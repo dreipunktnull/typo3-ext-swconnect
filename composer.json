@@ -1,18 +1,20 @@
 {
-    "name": "dreipunktnull/sw-connect",
-    "description": "Shopware 5 Connector for TYPO3 CMS",
-    "type": "typo3-cms-extension",
-    "license": "GPLv3",
-    "authors": [
-        {
-            "name": "Cedric Ziel",
-            "email": "ziel@dreipunktnull.com"
-        }
-    ],
-    "require": {},
-    "autoload": {
-        "psr-4": {
-            "DPN\\SwConnect\\": "Classes/"
-        }
-    }
+	"name": "dreipunktnull/sw-connect",
+	"description": "Shopware 5 Connector for TYPO3 CMS",
+	"type": "typo3-cms-extension",
+	"license": "GPLv3",
+	"authors": [
+		{
+			"name": "Cedric Ziel",
+			"email": "ziel@dreipunktnull.com"
+		}
+	],
+	"require": {
+		"symfony/serializer": "^3.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"DPN\\SwConnect\\": "Classes/"
+		}
+	}
 }
