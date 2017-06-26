@@ -1,0 +1,17 @@
+<f:layout name="Default"/>
+
+<f:section name="Main">
+	<f:for each="{products}" as="product">
+		<section class="product">
+			<h2>{product.name}</h2>
+			<p>Kategorien:
+				<f:for each="{product.categories}" as="category">{category.name}</f:for>
+			</p>
+			<p>{product.descriptionLong -> f:format.html()}</p>
+			<f:if condition="{product.images.0}">
+				{product.images.0 -> swc:media.product.image() -> f:variable(name: 'foo')}
+				{f:media(file: foo)}
+			</f:if>
+		</section>
+	</f:for>
+</f:section>

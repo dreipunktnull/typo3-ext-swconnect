@@ -12,7 +12,9 @@
 	"require": {
 		"symfony/serializer": "^3.0",
 		"symfony/property-info": "^3.0",
-		"symfony/property-access": "^3.0"
+		"symfony/property-access": "^3.0",
+		"phpdocumentor/reflection-docblock": "^3.0",
+		"ext-curl": "*"
 	},
 	"autoload": {
 		"psr-4": {

@@ -1,0 +1,7 @@
+plugin.tx_swconnect {
+    view {
+        templateRootPaths {
+            0 = EXT:sw_connect/Resources/Private/Templates/
+        }
+    }
+}

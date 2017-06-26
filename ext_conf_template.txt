@@ -1,0 +1,8 @@
+# cat=basic/api/a; type=string; label=Shop API URL
+api_url =
+# cat=basic/api/c; type=string; label=API user
+api_user =
+# cat=basic/api/a; type=string; label=Shopware API secret
+api_secret =
+# cat=basic/api/b; type=int+; label=TTL for the cache in seconds (0 means unlimited)
+api_cache_ttl = 3600
