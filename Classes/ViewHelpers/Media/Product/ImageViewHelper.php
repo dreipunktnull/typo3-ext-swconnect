@@ -3,7 +3,6 @@
 namespace DPN\SwConnect\ViewHelpers\Media\Product;
 
 use DPN\SwConnect\Media\ShopwareImageHelper;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithContentArgumentAndRenderStatic;
@@ -15,8 +14,11 @@ class ImageViewHelper extends AbstractViewHelper
     /**
      * @var bool
      */
-    protected  $escapeOutput = false;
+    protected $escapeOutput = false;
 
+    /**
+     * @var bool
+     */
     protected $escapeChildren = false;
 
     public function initializeArguments()

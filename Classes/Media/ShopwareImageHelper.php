@@ -89,7 +89,6 @@ class ShopwareImageHelper extends AbstractOnlineMediaHelper
             $imageFromApi->getDescription();
 
             return $imageFromApi->getPath();
-
         } catch (\Exception $exception) {
             return '';
         }
@@ -153,7 +152,6 @@ class ShopwareImageHelper extends AbstractOnlineMediaHelper
                 'description' => (int)$imageFromApi->getDescription(),
                 'tx_swconnect_url' => $imageFromApi->getPath(),
             ];
-
         } catch (\Exception $exception) {
             return [];
         }

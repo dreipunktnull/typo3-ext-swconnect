@@ -23,7 +23,6 @@ class ProductController extends ActionController
     }
 
     /**
-     * @return void
      */
     public function categoryAction()
     {

@@ -4,7 +4,6 @@ namespace DPN\SwConnect\Service;
 
 use DPN\SwConnect\Client\ShopwareClient;
 use TYPO3\CMS\Core\SingletonInterface;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Extensionmanager\Utility\ConfigurationUtility;
 
 class CategoryService implements SingletonInterface

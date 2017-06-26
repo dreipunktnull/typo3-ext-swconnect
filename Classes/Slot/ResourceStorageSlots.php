@@ -2,7 +2,6 @@
 
 namespace DPN\SwConnect\Slot;
 
-use Doctrine\DBAL\Driver\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\FolderInterface;

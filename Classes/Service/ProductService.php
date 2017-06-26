@@ -40,7 +40,7 @@ class ProductService implements SingletonInterface
      * @param string $mode
      * @return array
      */
-    public function findByCategories(array $settings, $mode = ProductService::CATEGORY_MODE_OR)
+    public function findByCategories(array $settings, $mode = self::CATEGORY_MODE_OR)
     {
         $extConf = $this->configurationUtility->getCurrentConfiguration('sw_connect');
         $api = new ShopwareClient($extConf['api_url']['value'], $extConf['api_user']['value'], $extConf['api_secret']['value']);

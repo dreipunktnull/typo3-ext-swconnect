@@ -137,12 +137,10 @@ class ShopwareClient
         }
 
         if (!isset($decodedResult['success'])) {
-
             return [];
         }
 
         if (!$decodedResult['success']) {
-
             return [];
         }
 

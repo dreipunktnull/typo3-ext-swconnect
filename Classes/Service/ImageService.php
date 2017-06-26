@@ -7,7 +7,6 @@ use DPN\SwConnect\Domain\Model\Image;
 use DPN\SwConnect\Serialization\SerializerFactory;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\SingletonInterface;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Extensionmanager\Utility\ConfigurationUtility;
 
 class ImageService implements SingletonInterface

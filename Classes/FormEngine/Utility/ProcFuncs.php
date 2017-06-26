@@ -11,8 +11,6 @@ class ProcFuncs
     /**
      * @param array $fConfig
      * @param \TYPO3\CMS\Backend\Form\ $fObj
-     *
-     * @return void
      */
     public static function getCategories(&$fConfig, $fObj)
     {

@@ -27,7 +27,7 @@ class SerializerFactory
         $encoders = static::createExtractors();
         $propertyInfoExtractor = static::createPropertyExtractor($classMetadataFactory);
 
-        $normalizers = array(new DateTimeNormalizer(), new ArrayDenormalizer(), new ObjectNormalizer($classMetadataFactory, null, null, $propertyInfoExtractor));
+        $normalizers = [new DateTimeNormalizer(), new ArrayDenormalizer(), new ObjectNormalizer($classMetadataFactory, null, null, $propertyInfoExtractor)];
 
         return new Serializer($normalizers, $encoders);
     }
@@ -40,18 +40,18 @@ class SerializerFactory
         $serializerExtractor = new SerializerExtractor($classMetadataFactory);
 
         // array of PropertyListExtractorInterface
-        $listExtractors = array($serializerExtractor, $reflectionExtractor);
+        $listExtractors = [$serializerExtractor, $reflectionExtractor];
 
         // array of PropertyTypeExtractorInterface
         // $typeExtractors = array($phpDocExtractor, $reflectionExtractor);
-        $typeExtractors = array($reflectionExtractor);
+        $typeExtractors = [$reflectionExtractor];
 
         // array of PropertyDescriptionExtractorInterface
         //$descriptionExtractors = array($phpDocExtractor);
-        $descriptionExtractors = array();
+        $descriptionExtractors = [];
 
         // array of PropertyAccessExtractorInterface
-        $accessExtractors = array($reflectionExtractor);
+        $accessExtractors = [$reflectionExtractor];
 
         return new PropertyInfoExtractor(
             $listExtractors,
@@ -66,6 +66,6 @@ class SerializerFactory
      */
     protected static function createExtractors()
     {
-        return array(new XmlEncoder(), new JsonEncoder());
+        return [new XmlEncoder(), new JsonEncoder()];
     }
 }
