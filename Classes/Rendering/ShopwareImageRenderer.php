@@ -8,6 +8,7 @@ use TYPO3\CMS\Core\Resource\Index\MetaDataRepository;
 use TYPO3\CMS\Core\Resource\Rendering\FileRendererInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3Fluid\Fluid\Core\ViewHelper\TagBuilder;
 
 class ShopwareImageRenderer implements FileRendererInterface
 {
@@ -55,6 +56,11 @@ class ShopwareImageRenderer implements FileRendererInterface
         $fileMetadataRepository = $objectManager->get(MetaDataRepository::class);
         $metaData = $fileMetadataRepository->findByFile($file);
 
+        $tagBuilder = $objectManager->get(TagBuilder::class);
+        $tagBuilder->reset();
+
+        $tagBuilder->setTagName('img');
+
         if (array_key_exists('tx_swconnect_url', $metaData) && $metaData['tx_swconnect_url'] !== '') {
             $url = $metaData['tx_swconnect_url'];
         } else {
@@ -64,6 +70,14 @@ class ShopwareImageRenderer implements FileRendererInterface
             $url = $image->getPath();
         }
 
-        return sprintf('<img src="%s"/>', $url);
+        foreach (['class'] as $attribute) {
+            if (array_key_exists($attribute, $options)) {
+                $tagBuilder->addAttribute($attribute, $options[$attribute]);
+            }
+        }
+
+        $tagBuilder->addAttribute('src', $url);
+
+        return $tagBuilder->render();
     }
 }

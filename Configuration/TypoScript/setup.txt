@@ -3,5 +3,11 @@ plugin.tx_swconnect {
         templateRootPaths {
             0 = EXT:sw_connect/Resources/Private/Templates/
         }
+        layoutRootPaths {
+            0 = EXT:sw_connect/Resources/Private/Layouts/
+        }
+        partialRootPaths {
+            0 = EXT:sw_connect/Resources/Private/Partials/
+        }
     }
 }
