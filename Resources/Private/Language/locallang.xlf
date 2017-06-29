@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0" xmlns:t3="http://typo3.org/schemas/xliff">
+	<file t3:id="1498723449" source-language="en" datatype="plaintext" original="messages" date="2015-01-02T11:16:11Z" product-name="swconnect">
+		<header/>
+		<body>
+			<trans-unit id="toolbar.item.title">
+				<source>SwConnect Status</source>
+			</trans-unit>
+			<trans-unit id="toolbar.dropdown.title">
+				<source>SwConnect Status</source>
+			</trans-unit>
+			<trans-unit id="toolbar.dropdown.description">
+				<source>The Shopware Connector "SwConnect" is active. Please consult the manual for more information</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
