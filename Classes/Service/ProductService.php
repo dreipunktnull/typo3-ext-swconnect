@@ -25,14 +25,42 @@ class ProductService implements SingletonInterface
         $this->configurationUtility = $configurationUtility;
     }
 
+    /**
+     * @param int $id
+     * @return Article
+     */
+    public function findOne(int $id)
+    {
+        $api = $this->getClient();
+
+        $result = $api->get(sprintf('articles/%s', $id));
+
+        try {
+            $serializer = SerializerFactory::createDefaultSerializer();
+
+            if (empty($result['data'])) {
+                throw new \RuntimeException('No valid product from API');
+            }
+
+            return $serializer->denormalize($result['data'], Article::class);
+        } catch (\Exception $exception) {
+            return null;
+        }
+    }
+
     public function findAll()
     {
-        $extConf = $this->configurationUtility->getCurrentConfiguration('sw_connect');
-        $api = new ShopwareClient($extConf['api_url']['value'], $extConf['api_user']['value'], $extConf['api_secret']['value']);
+        $api = $this->getClient();
 
         $result = $api->get('articles', ['limit' => 100]);
 
-        return $result['data'];
+        try {
+            $serializer = SerializerFactory::createDefaultSerializer();
+
+            return $serializer->denormalize($result['data'], Article::class . '[]');
+        } catch (\Exception $exception) {
+            return [];
+        }
     }
 
     /**
@@ -42,8 +70,7 @@ class ProductService implements SingletonInterface
      */
     public function findByCategories(array $settings, $mode = self::CATEGORY_MODE_OR)
     {
-        $extConf = $this->configurationUtility->getCurrentConfiguration('sw_connect');
-        $api = new ShopwareClient($extConf['api_url']['value'], $extConf['api_user']['value'], $extConf['api_secret']['value']);
+        $api = $this->getClient();
 
         $filters = [];
 
@@ -71,11 +98,21 @@ class ProductService implements SingletonInterface
 
         try {
             $serializer = SerializerFactory::createDefaultSerializer();
-            $des = $serializer->denormalize($result['data'], Article::class . '[]');
+
+            return $serializer->denormalize($result['data'], Article::class . '[]');
         } catch (\Exception $exception) {
             return [];
         }
+    }
 
-        return $des;
+    /**
+     * @return ShopwareClient
+     */
+    protected function getClient(): ShopwareClient
+    {
+        $extConf = $this->configurationUtility->getCurrentConfiguration('sw_connect');
+        $api = new ShopwareClient($extConf['api_url']['value'], $extConf['api_user']['value'], $extConf['api_secret']['value']);
+
+        return $api;
     }
 }
