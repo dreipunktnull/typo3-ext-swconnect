@@ -1,0 +1,49 @@
+<html xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers" data-namespace-typo3-fluid="true">
+<h3 class="dropdown-headline">
+	<f:translate key="LLL:EXT:sw_connect/Resources/Private/Language/locallang.xlf:toolbar.dropdown.title"/>
+</h3>
+
+<div class="dropdown-text">
+	<f:translate key="LLL:EXT:sw_connect/Resources/Private/Language/locallang.xlf:toolbar.dropdown.description"/>
+</div>
+
+<hr>
+
+<div class="dropdown-table">
+	<f:for each="{reports}" as="item">
+		<div class="dropdown-table-row">
+			<div class="dropdown-table-column dropdown-table-icon">
+				<f:if condition="{item.iconIdentifier}">
+					<f:then>
+						<core:icon identifier="{item.iconIdentifier}" size="small" alternativeMarkupIdentifier="inline"/>
+					</f:then>
+					<f:else>{item.icon -> f:format.raw()}</f:else>
+				</f:if>
+			</div>
+			<div class="dropdown-table-column dropdown-table-title">
+				<f:translate key="{item.title}" default="{item.title}"/>
+				<f:if condition="{item.titleAddition}"> ({item.titleAddition -> f:format.htmlspecialchars()})</f:if>
+			</div>
+			<div
+				class="dropdown-table-column dropdown-table-value {f:if(condition: item.status, then: 'text-{item.status}')}">
+				{item.value}
+			</div>
+		</div>
+	</f:for>
+</div>
+
+<hr>
+
+<div class="dropdown-table">
+	<div class="dropdown-table-row">
+		<a href="https://dreipunktnull.com/?utm_source=swconnect-tbitem&utm_medium=backend&utm_campaign=SW%20Connect" target="_blank">
+			<div class="dropdown-table-column dropdown-table-icon">
+				<core:icon identifier="swconnect-toolbar-dpn" size="small" alternativeMarkupIdentifier="inline"/>
+			</div>
+			<div class="dropdown-table-column dropdown-table-value">
+				Support by dreipunktnull
+			</div>
+		</a>
+	</div>
+</div>
+</html>
