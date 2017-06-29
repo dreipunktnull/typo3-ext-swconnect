@@ -27,12 +27,45 @@ if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations
     ];
 }
 
-//$GLOBALS['TYPO3_CONF_VARS']['SYS'][]
+if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['sw_connect_seourl'])) {
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['sw_connect_seourl'] = [
+        'backend' => \TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend::class,
+        'frontend' => \TYPO3\CMS\Core\Cache\Frontend\StringFrontend::class,
+    ];
+}
 
 /**
  * Register a global fluid namespace
  */
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['swc'][] = 'DPN\\SwConnect\\ViewHelpers';
+
+/**
+ * Icons
+ */
+$iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
+$iconRegistry->registerIcon(
+    'swconnect-article',
+    \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+    [
+        'source' => 'EXT:sw_connect/Resources/Public/Icons/icon-shopware.svg',
+    ]
+);
+$iconRegistry->registerIcon(
+    'swconnect-toolbar-item',
+    \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+    [
+        'source' => 'EXT:sw_connect/Resources/Public/Icons/icon-shopware.svg',
+    ]
+);
+$iconRegistry->registerIcon(
+    'swconnect-toolbar-dpn',
+    \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+    [
+        'source' => 'EXT:sw_connect/Resources/Public/Icons/icon-shopware.svg',
+    ]
+);
+
+unset($iconRegistry);
 
 /**
  * Shopware media rendering
@@ -62,4 +95,25 @@ $signalSlotDispatcher->connect(
     'postProcessAddedFiles'
 );
 
+/**
+ * Add Status Information to the Toolbar Item
+ */
+$signalSlotDispatcher->connect(
+    \DPN\SwConnect\Backend\ToolbarItems\SwConnectToolbarItem::class,
+    \DPN\SwConnect\Backend\ToolbarItems\SwConnectToolbarItem::SIGNAL_COLLECT_STATUS,
+    \DPN\SwConnect\Slot\StatusCollectorSlot::class,
+    'collect'
+);
+
 unset($signalSlotDispatcher);
+
+/**
+ * LinkHandling
+ */
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['linkHandler']['shopware-product'] = \DPN\SwConnect\LinkHandler\ProductLinkHandler::class;
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['linkHandler']['shopware-product'] = \DPN\SwConnect\LinkHandler\ProductLinkHandler::class;
+$GLOBALS['TYPO3_CONF_VARS']['FE']['typolinkBuilder']['shopware-product'] = \DPN\SwConnect\LinkHandler\ProductLinkBuilder::class;
+
+if (TYPO3_MODE === 'BE') {
+    $GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1498721802] = \DPN\SwConnect\Backend\ToolbarItems\SwConnectToolbarItem::class;
+}

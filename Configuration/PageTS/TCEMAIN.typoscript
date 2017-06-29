@@ -1,0 +1,9 @@
+TCEMAIN.linkHandler{
+  shopwareProduct {
+    handler = DPN\SwConnect\Recordlist\ProductLinkHandler
+    label = Shopware Product
+    configuration {
+    }
+    scanBefore = page
+  }
+}

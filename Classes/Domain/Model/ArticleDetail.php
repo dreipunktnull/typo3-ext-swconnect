@@ -90,6 +90,11 @@ class ArticleDetail
     protected $position;
 
     /**
+     * @var string
+     */
+    protected $seoUrl;
+
+    /**
      * @return int
      */
     public function getId()
@@ -393,5 +398,21 @@ class ArticleDetail
     {
         $this->position = $position;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeoUrl()
+    {
+        return $this->seoUrl;
+    }
+
+    /**
+     * @param string $seoUrl
+     */
+    public function setSeoUrl(string $seoUrl = null)
+    {
+        $this->seoUrl = $seoUrl;
     }
 }

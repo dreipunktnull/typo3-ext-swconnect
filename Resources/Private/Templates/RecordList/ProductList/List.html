@@ -1,0 +1,22 @@
+<table class="table">
+	<thead>
+	<tr>
+		<td>ID</td>
+		<td>Number</td>
+		<td>Name</td>
+	</tr>
+	</thead>
+	<tbody>
+	<f:for each="{products}" as="product">
+	<tr>
+		<td>
+			<a href="#" class="t3js-productLink" data-product-id="{product.id}">
+				{product.id}
+			</a>
+		</td>
+		<td>{product.mainDetail.number}</td>
+		<td>{product.name}</td>
+	</tr>
+	</f:for>
+	</tbody>
+</table>
