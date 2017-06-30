@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace DPN\SwConnect\LinkHandler;
 
 use DPN\SwConnect\Domain\Model\Article;
-use DPN\SwConnect\Service\ProductService;
+use DPN\SwConnect\Service\Decorator\CachedProductService;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\SingletonInterface;
@@ -49,7 +49,7 @@ class ProductLinkBuilder extends AbstractTypolinkBuilder implements SingletonInt
         if ($this->cache->has((string) $productId)) {
             $seoUrl = $this->cache->get($productId);
         } else {
-            $productService = GeneralUtility::makeInstance(ObjectManager::class)->get(ProductService::class);
+            $productService = GeneralUtility::makeInstance(ObjectManager::class)->get(CachedProductService::class);
 
             $product = $productService->findOne((int)$productId);
             if (!$product instanceof Article) {

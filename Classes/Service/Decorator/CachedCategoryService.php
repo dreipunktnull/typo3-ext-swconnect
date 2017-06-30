@@ -2,6 +2,7 @@
 
 namespace DPN\SwConnect\Service\Decorator;
 
+use DPN\SwConnect\Domain\Model\Article;
 use DPN\SwConnect\Service\CategoryService;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Extensionmanager\Utility\ConfigurationUtility;
@@ -15,6 +16,7 @@ class CachedCategoryService extends CategoryService
 
     /**
      * @param ConfigurationUtility $configurationUtility
+     * @param CacheManager $cacheManager
      */
     public function __construct(ConfigurationUtility $configurationUtility, CacheManager $cacheManager)
     {
@@ -24,7 +26,7 @@ class CachedCategoryService extends CategoryService
     }
 
     /**
-     * @return array|mixed
+     * @return Article[]
      */
     public function findAll()
     {

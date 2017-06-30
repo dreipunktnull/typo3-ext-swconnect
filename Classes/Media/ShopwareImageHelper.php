@@ -3,7 +3,7 @@
 namespace DPN\SwConnect\Media;
 
 use DPN\SwConnect\Domain\Model\Image;
-use DPN\SwConnect\Service\ImageService;
+use DPN\SwConnect\Service\Decorator\CachedImageService;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\Folder;
 use TYPO3\CMS\Core\Resource\Index\MetaDataRepository;
@@ -83,7 +83,7 @@ class ShopwareImageHelper extends AbstractOnlineMediaHelper
 
             $imageId = $components['host'];
             $objectManager = $this->getObjectManager();
-            $imageService = $objectManager->get(ImageService::class);
+            $imageService = $objectManager->get(CachedImageService::class);
 
             $imageFromApi = $imageService->find($imageId);
             $imageFromApi->getDescription();
@@ -141,7 +141,7 @@ class ShopwareImageHelper extends AbstractOnlineMediaHelper
 
             $imageId = $components['host'];
             $objectManager = $this->getObjectManager();
-            $imageService = $objectManager->get(ImageService::class);
+            $imageService = $objectManager->get(CachedImageService::class);
 
             $imageFromApi = $imageService->find($imageId);
             $imageFromApi->getDescription();

@@ -3,7 +3,7 @@
 namespace DPN\SwConnect\LinkHandler;
 
 use DPN\SwConnect\Domain\Model\Article;
-use DPN\SwConnect\Service\ProductService;
+use DPN\SwConnect\Service\Decorator\CachedProductService;
 use TYPO3\CMS\Backend\Form\Element\InputLinkElement;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
@@ -71,14 +71,13 @@ class ProductLinkHandler implements LinkHandlingInterface
     public function resolveHandlerData(array $data): array
     {
         $productId = $data['id'];
-        $productService = GeneralUtility::makeInstance(ObjectManager::class)->get(ProductService::class);
+
+        $productService = GeneralUtility::makeInstance(ObjectManager::class)->get(CachedProductService::class);
 
         $product = $productService->findOne((int)$productId);
         if (!$product instanceof Article) {
             return ['id' => ''];
         }
-
-        $product->getMainDetail()->getSeoUrl();
 
         return ['id' => $data['id']];
     }
@@ -96,7 +95,7 @@ class ProductLinkHandler implements LinkHandlingInterface
         $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
 
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        $productService = $objectManager->get(ProductService::class);
+        $productService = $objectManager->get(CachedProductService::class);
         $product = $productService->findOne($linkData['id']);
 
         $shopwareIcon = $iconFactory->getIcon('swconnect-article', Icon::SIZE_SMALL)->render();

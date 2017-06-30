@@ -17,18 +17,11 @@ class ImageService implements SingletonInterface
     protected $configurationUtility;
 
     /**
-     * @var CacheManager
-     */
-    protected $cacheManager;
-
-    /**
      * @param ConfigurationUtility $configurationUtility
-     * @param CacheManager $cacheManager
      */
-    public function __construct(ConfigurationUtility $configurationUtility, CacheManager $cacheManager)
+    public function __construct(ConfigurationUtility $configurationUtility)
     {
         $this->configurationUtility = $configurationUtility;
-        $this->cacheManager = $cacheManager;
     }
 
     /**
@@ -38,7 +31,7 @@ class ImageService implements SingletonInterface
     {
         $api = $this->getClient();
 
-        $result = $api->get('categories?limit=1000');
+        $result = $api->get('media?limit=1000');
 
         return $result['data'];
     }
@@ -48,24 +41,16 @@ class ImageService implements SingletonInterface
      *
      * @return Image
      */
-    public function find($id)
+    public function find(int $id)
     {
-        $cache = $this->cacheManager->getCache('sw_connect_images_1st');
-        $entryIdentifier = sprintf('image_%d', $id);
-        if ($cache->has($entryIdentifier)) {
-            return $cache->get($entryIdentifier);
-        }
-
         $client = $this->getClient();
 
         $result = $client->get(sprintf('media/%d', $id));
 
         try {
             $serializer = SerializerFactory::createDefaultSerializer();
-            $image = $serializer->denormalize($result['data'], Image::class);
-            $cache->set($entryIdentifier, $image);
 
-            return $image;
+            return $serializer->denormalize($result['data'], Image::class);
         } catch (\Exception $exception) {
             return null;
         }

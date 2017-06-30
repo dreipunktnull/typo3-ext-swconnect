@@ -48,6 +48,9 @@ class ProductService implements SingletonInterface
         }
     }
 
+    /**
+     * @return Article[]
+     */
     public function findAll()
     {
         $api = $this->getClient();

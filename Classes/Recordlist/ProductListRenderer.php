@@ -2,7 +2,7 @@
 
 namespace DPN\SwConnect\Recordlist;
 
-use DPN\SwConnect\Service\ProductService;
+use DPN\SwConnect\Service\Decorator\CachedProductService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Fluid\View\StandaloneView;
@@ -37,7 +37,7 @@ class ProductListRenderer
     private function gatherProducts()
     {
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        $productService = $objectManager->get(ProductService::class);
+        $productService = $objectManager->get(CachedProductService::class);
 
         return $productService->findAll();
     }

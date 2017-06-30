@@ -2,7 +2,7 @@
 
 namespace DPN\SwConnect\Rendering;
 
-use DPN\SwConnect\Service\ImageService;
+use DPN\SwConnect\Service\Decorator\CachedImageService;
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\Index\MetaDataRepository;
 use TYPO3\CMS\Core\Resource\Rendering\FileRendererInterface;
@@ -64,7 +64,7 @@ class ShopwareImageRenderer implements FileRendererInterface
         if (array_key_exists('tx_swconnect_url', $metaData) && $metaData['tx_swconnect_url'] !== '') {
             $url = $metaData['tx_swconnect_url'];
         } else {
-            $imageService = $objectManager->get(ImageService::class);
+            $imageService = $objectManager->get(CachedImageService::class);
             $image = $imageService->find($file->getNameWithoutExtension());
 
             $url = $image->getPath();

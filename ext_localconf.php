@@ -21,8 +21,8 @@ if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['sw_connect_categories'] = [];
 }
 
-if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['sw_connect_images_1st'])) {
-    $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['sw_connect_images_1st'] = [
+if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['sw_connect_images'])) {
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['sw_connect_images'] = [
         'backend' => \TYPO3\CMS\Core\Cache\Backend\TransientMemoryBackend::class
     ];
 }
@@ -33,6 +33,51 @@ if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations
         'frontend' => \TYPO3\CMS\Core\Cache\Frontend\StringFrontend::class,
     ];
 }
+
+\NamelessCoder\MultilevelCache\CacheConfiguration::convert('sw_connect_products', [
+    [
+        'backend' => \TYPO3\CMS\Core\Cache\Backend\TransientMemoryBackend::class,
+        'options' => [
+            'defaultLifetime' => 0,
+        ]
+    ],
+    [
+        'backend' => \TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend::class,
+        'options' => [
+            'defaultLifetime' => 3600,
+        ]
+    ],
+]);
+
+\NamelessCoder\MultilevelCache\CacheConfiguration::convert('sw_connect_seourl', [
+    [
+        'backend' => \TYPO3\CMS\Core\Cache\Backend\TransientMemoryBackend::class,
+        'options' => [
+            'defaultLifetime' => 0,
+        ]
+    ],
+    [
+        'backend' => \TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend::class,
+        'options' => [
+            'defaultLifetime' => 3600,
+        ]
+    ],
+]);
+
+\NamelessCoder\MultilevelCache\CacheConfiguration::convert('sw_connect_images', [
+    [
+        'backend' => \TYPO3\CMS\Core\Cache\Backend\TransientMemoryBackend::class,
+        'options' => [
+            'defaultLifetime' => 0,
+        ]
+    ],
+    [
+        'backend' => \TYPO3\CMS\Core\Cache\Backend\Typo3DatabaseBackend::class,
+        'options' => [
+            'defaultLifetime' => 3600,
+        ]
+    ],
+]);
 
 /**
  * Register a global fluid namespace
