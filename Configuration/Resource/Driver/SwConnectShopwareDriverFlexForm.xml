@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<T3DataStructure>
+    <ROOT>
+        <type>array</type>
+        <el>
+            <pathType>
+                <TCEforms>
+                    <label>LLL:EXT:lang/Resources/Private/Language/locallang_mod_file_list.xlf:localDriverFlexform_pathType</label>
+                    <config>
+                        <type>radio</type>
+                        <items type="array">
+                            <numIndex index="0" type="array">
+                                <numIndex index="0">LLL:EXT:lang/Resources/Private/Language/locallang_mod_file_list.xlf:localDriverFlexform_pathType_relative</numIndex>
+                                <numIndex index="1">relative</numIndex>
+                            </numIndex>
+                            <numIndex index="1" type="array">
+                                <numIndex index="0">LLL:EXT:lang/Resources/Private/Language/locallang_mod_file_list.xlf:localDriverFlexform_pathType_absolute</numIndex>
+                                <numIndex index="1">absolute</numIndex>
+                            </numIndex>
+                        </items>
+                        <default>relative</default>
+                    </config>
+                </TCEforms>
+            </pathType>
+            <caseSensitive>
+                <TCEforms>
+                    <label>LLL:EXT:lang/Resources/Private/Language/locallang_mod_file_list.xlf:localDriverFlexform_caseSensitive</label>
+                    <config>
+                        <type>check</type>
+                        <default>1</default>
+                    </config>
+                </TCEforms>
+            </caseSensitive>
+        </el>
+    </ROOT>
+</T3DataStructure>

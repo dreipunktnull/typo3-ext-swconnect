@@ -124,6 +124,16 @@ $rendererRegistry->registerRendererClass(\DPN\SwConnect\Rendering\ShopwareImageR
 unset($rendererRegistry);
 
 /**
+ * FAL Driver
+ */
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['fal']['registeredDrivers']['SwConnectShopware'] = [
+    'class' => \DPN\SwConnect\Resource\Driver\SwConnectShopwareDriver::class,
+    'shortName' => 'SwConnectShopware',
+    'flexFormDS' => 'FILE:EXT:sw_connect/Configuration/Resource/Driver/SwConnectShopwareDriverFlexForm.xml',
+    'label' => 'SwConnect Shopware'
+];
+
+/**
  * Signals / Slots
  */
 
