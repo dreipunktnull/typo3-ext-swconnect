@@ -87,7 +87,7 @@ class SwConnectToolbarItem implements ToolbarItemInterface
      */
     public function getAdditionalAttributes()
     {
-        // TODO: Implement getAdditionalAttributes() method.
+        return [];
     }
 
     /**
