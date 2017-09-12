@@ -1,8 +1,50 @@
-# typo3-ext-swconnect
+# TYPO3 extension ShopwareConnect
 
-WIP: Shopware 5 Connector for TYPO3 CMS 8.7
+A Shopware 5 Connector for TYPO3 CMS 8.7
 
 ## Templates & Layouts
+
+### General
+
+The extension registers the global fluid namespace `swc`. This means that you
+can access all ShopwareConnect ViewHelpers any time, anywhere - e.g. to resolve and display product images.
+
+### TemplatePaths
+
+The `templateRootPaths` TypoScript option is native to TYPO3 and most developers should feel familiar with it.
+
+In essence you can add a new path where templates are trying to be resolved from:
+
+```typo3_typoscript
+plugin.tx_swconnect {
+    view {
+        templateRootPaths.20 = EXT:mytheme/Resources/Private/Templates/Plugins/SwConnect/
+        partialRootPaths.20 = EXT:mytheme/Resources/Private/Partials/Plugins/SwConnect/
+        layoutRootPaths.20 = EXT:mytheme/Resources/Private/Layouts/Plugins/SwConnect/
+    }
+}
+``` 
+
+### Images
+
+All product images can be rendered with the `f:media`-ViewHelper once resolved through `swc:media.product.image`.
+ 
+An example for rendering a single products image:
+
+```html
+<!-- 
+    Grab the Image from the product, then convert it with the media.product.image ViewHelper, 
+    then give it a local name. 
+-->
+{product.images.0 -> swc:media.product.image() -> f:variable(name: 'teaserImage')}
+
+<!--
+    Render the assigned image like any other medium with all the traits and benefits of media rendering in TYPO3
+-->
+{f:media(file: teaserImage)}
+```
+
+### Custom templates
 
 The extension adapts the dynamic custom layouts approach from [EXT:news](https://github.com/georgringer/news) (kudos to @georgringer). 
 As an integrator you have the option to use layouts through the plugins' flexform, or TypoScript.
@@ -31,6 +73,19 @@ tx_swconnect.templateLayouts {
     150 = --div--,Special Option Group
     151 = Layout Label
 }
+```
+
+Usage in the templates:
+
+```xml
+<f:if condition="{settings.templateLayout} == 99">
+    <f:then>
+        <f:render partial="Teaser" arguments="{_all}"/>    
+    </f:then>
+    <f:else>
+        <f:render partial="Default" arguments="{_all}"/>    
+    </f:else>
+</f:if>
 ```
 
 ## Signals
