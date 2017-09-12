@@ -1,0 +1,6 @@
+tx_swconnect.templateLayouts {
+    0 = --div--,List
+    1 = Default List Layout
+    50 = --div--,Single
+    51 = Default Single Layout
+}

@@ -138,6 +138,23 @@
                         </TCEforms>
                     </settings.recursive>
 
+                    <settings.templateLayout>
+                        <TCEforms>
+                            <label>Template</label>
+                            <config>
+                                <type>select</type>
+                                <itemsProcFunc>DPN\SwConnect\FormEngine\ItemsProcFunc->user_templateLayout</itemsProcFunc>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0"></numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </settings.templateLayout>
+
                 </el>
             </ROOT>
         </sDEF>
