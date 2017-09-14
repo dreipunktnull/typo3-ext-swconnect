@@ -1,6 +1,6 @@
-<f:layout name="Default"/>
+<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers">
 
-<f:section name="Main">
+<f:if condition="{products}">
 	<f:for each="{products}" as="product">
 		<section class="product">
 			<h2>{product.name}</h2>
@@ -14,4 +14,6 @@
 			</f:if>
 		</section>
 	</f:for>
-</f:section>
+</f:if>
+
+</html>
