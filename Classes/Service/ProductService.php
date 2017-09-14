@@ -92,7 +92,7 @@ class ProductService implements SingletonInterface
 
         $result = $api->get('articlesByCategory', [
             'limit' => (int)$settings['limit'],
-            'filter' => $filters
+            'filter' => $filters,
         ]);
 
         if (false === is_array($result['data'])) {
@@ -106,6 +106,44 @@ class ProductService implements SingletonInterface
         } catch (\Exception $exception) {
             return [];
         }
+    }
+
+    /**
+     * @param array $settings
+     * @param array $ids
+     * @return Article[]
+     */
+    public function findByIds(array $settings, array $ids)
+    {
+        $api = $this->getClient();
+
+        $filters = [];
+
+        $ids = array_filter($ids);
+
+        $articles = [];
+        if (count($ids) > 0) {
+            foreach ($ids as $id) {
+                $result = $api->get(sprintf('articles/%s', $id), [
+                    'limit' => (int)$settings['limit'],
+                    'filter' => $filters,
+                ]);
+
+                if (false === is_array($result['data'])) {
+                    continue;
+                }
+
+                try {
+                    $serializer = SerializerFactory::createDefaultSerializer();
+
+                    $articles[] = $serializer->denormalize($result['data'], Article::class);
+                } catch (\Exception $exception) {
+                    continue;
+                }
+            }
+        }
+
+        return $articles;
     }
 
     /**
