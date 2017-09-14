@@ -102,9 +102,32 @@ class Article
      */
     protected $categories;
 
+    /**
+     * @var Tax
+     */
+    protected $tax;
+
+    /**
+     * @var PropertyValue[]
+     */
+    protected $propertyValues;
+
+    /**
+     * @var CustomerGroup[]
+     */
+    protected $customerGroups;
+
+    /**
+     * @var Link[]
+     */
+    protected $links;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->customerGroups = new ArrayCollection();
+        $this->links = new ArrayCollection();
+        $this->propertyValues = new ArrayCollection();
     }
 
     /**
@@ -471,5 +494,147 @@ class Article
     public function addCategory(Category $category)
     {
         $this->categories->add($category);
+    }
+
+    /**
+     * @return Tax
+     */
+    public function getTax(): Tax
+    {
+        return $this->tax;
+    }
+
+    /**
+     * @param Tax $tax
+     * @return Article
+     */
+    public function setTax(Tax $tax) : Article
+    {
+        $this->tax = $tax;
+
+        return $this;
+    }
+
+    /**
+     * @param PropertyValue[] $propertyValues
+     * @return Article
+     */
+    public function setPropertyValues($propertyValues): Article
+    {
+        if (is_array($propertyValues)) {
+            $this->propertyValues = new ArrayCollection($propertyValues);
+        } elseif ($propertyValues instanceof CollectionInterface) {
+            $this->propertyValues = $propertyValues;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return PropertyValue[]
+     */
+    public function getPropertyValues()
+    {
+        return $this->propertyValues;
+    }
+
+    /**
+     * @param PropertyValue $propertyValue
+     */
+    public function addPropertyValue(PropertyValue $propertyValue)
+    {
+        $this->propertyValues->add($propertyValue);
+    }
+
+    /**
+     * @param PropertyValue $propertyValue
+     */
+    public function removePropertyValue(PropertyValue $propertyValue)
+    {
+        if ($this->propertyValues->contains($propertyValue)) {
+            $this->propertyValues->removeElement($propertyValue);
+        }
+    }
+
+    /**
+     * @param CustomerGroup[] $customerGroups
+     * @return Article
+     */
+    public function setCustomerGroups($customerGroups): Article
+    {
+        if (is_array($customerGroups)) {
+            $this->customerGroups = new ArrayCollection($customerGroups);
+        } elseif ($customerGroups instanceof CollectionInterface) {
+            $this->customerGroups = $customerGroups;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return CustomerGroup[]
+     */
+    public function getCustomerGroups()
+    {
+        return $this->customerGroups;
+    }
+
+    /**
+     * @param CustomerGroup $customerGroup
+     */
+    public function addCustomerGroup(CustomerGroup $customerGroup)
+    {
+        $this->customerGroups->add($customerGroup);
+    }
+
+    /**
+     * @param CustomerGroup $customerGroup
+     */
+    public function removeCustomerGroup(CustomerGroup $customerGroup)
+    {
+        if ($this->customerGroups->contains($customerGroup)) {
+            $this->customerGroups->removeElement($customerGroup);
+        }
+    }
+
+    /**
+     * @return Link[]
+     */
+    public function getLinks()
+    {
+        return $this->links;
+    }
+
+    /**
+     * @param Link[] $links
+     * @return Article
+     */
+    public function setLinks($links): Article
+    {
+        if (is_array($links)) {
+            $this->links = new ArrayCollection($links);
+        } elseif ($links instanceof CollectionInterface) {
+            $this->links = $links;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Link $link
+     */
+    public function addLink(Link $link)
+    {
+        $this->links->add($link);
+    }
+
+    /**
+     * @param Link $link
+     */
+    public function removeLink(Link $link)
+    {
+        if ($this->links->contains($link)) {
+            $this->links->removeElement($link);
+        }
     }
 }

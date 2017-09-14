@@ -95,6 +95,11 @@ class ArticleDetail
     protected $seoUrl;
 
     /**
+     * @var Article[]
+     */
+    protected $prices;
+
+    /**
      * @return int
      */
     public function getId()
@@ -414,5 +419,21 @@ class ArticleDetail
     public function setSeoUrl(string $seoUrl = null)
     {
         $this->seoUrl = $seoUrl;
+    }
+
+    /**
+     * @return Article[]
+     */
+    public function getPrices()
+    {
+        return $this->prices;
+    }
+
+    /**
+     * @param Article[] $prices
+     */
+    public function setPrices(array $prices = [])
+    {
+        $this->prices = $prices;
     }
 }
