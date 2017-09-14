@@ -4,10 +4,13 @@ namespace DPN\SwConnect\Controller;
 
 use DPN\SwConnect\Service\Decorator\CachedProductService;
 use DPN\SwConnect\Service\ProductService;
-use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
-class ProductController extends ActionController
+class ProductController extends AbstractController
 {
+    const DISPLAY_MODE_CATEGORY = 'category';
+
+    const DISPLAY_MODE_ITEMLIST = 'item_list';
+
     /**
      * @var ProductService
      */
@@ -24,12 +27,24 @@ class ProductController extends ActionController
     }
 
     /**
+     * Displays a product listing.
      */
-    public function categoryAction()
+    public function listAction()
     {
-        $this->view->assign('products', $this->productService->findByCategories(
-            $this->settings,
-            explode(',', $this->settings['categories'])
-        ));
+        if (static::DISPLAY_MODE_CATEGORY === $this->settings['merged']['mode']) {
+            $this->view->assign('products', $this->productService->findByCategories(
+                $this->settings,
+                explode(',', $this->settings['merged']['categories'])
+            ));
+        }
+
+        if (static::DISPLAY_MODE_ITEMLIST === $this->settings['merged']['mode']) {
+            $this->view->assign('products', $this->productService->findByIds(
+                $this->settings,
+                explode(',', $this->settings['merged']['products'])
+            ));
+        }
+
+        $this->view->assign('row', $this->configurationManager->getContentObject()->data);
     }
 }
