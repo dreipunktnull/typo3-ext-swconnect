@@ -6,10 +6,10 @@ defined('TYPO3_MODE') or die();
     'DPN.sw_connect',
     'Products',
     [
-        'Product' => 'category',
+        'Product' => 'category,list',
     ],
     [
-        'Product' => 'category',
+        'Product' => 'category,list',
     ]
 );
 
@@ -172,3 +172,10 @@ $GLOBALS['TYPO3_CONF_VARS']['FE']['typolinkBuilder']['shopware-product'] = \DPN\
 if (TYPO3_MODE === 'BE') {
     $GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1498721802] = \DPN\SwConnect\Backend\ToolbarItems\SwConnectToolbarItem::class;
 }
+
+
+/**
+ * Backend previews.
+ */
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['swconnect_products']['sw_connect'] =
+    \DPN\SwConnect\Hook\PageLayoutView::class . '->printSettings';
