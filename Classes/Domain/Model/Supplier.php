@@ -69,7 +69,7 @@ class Supplier
      * @param string $name
      * @return Supplier
      */
-    public function setName(string $name = ''): Supplier
+    public function setName(string $name = null): Supplier
     {
         $this->name = $name;
         return $this;
@@ -87,7 +87,7 @@ class Supplier
      * @param string $image
      * @return Supplier
      */
-    public function setImage(string $image = ''): Supplier
+    public function setImage(string $image = null): Supplier
     {
         $this->image = $image;
         return $this;
@@ -105,7 +105,7 @@ class Supplier
      * @param string $link
      * @return Supplier
      */
-    public function setLink(string $link = ''): Supplier
+    public function setLink(string $link = null): Supplier
     {
         $this->link = $link;
         return $this;
@@ -123,7 +123,7 @@ class Supplier
      * @param string $description
      * @return Supplier
      */
-    public function setDescription(string $description = ''): Supplier
+    public function setDescription(string $description = null): Supplier
     {
         $this->description = $description;
         return $this;
@@ -141,7 +141,7 @@ class Supplier
      * @param string $metaDescription
      * @return Supplier
      */
-    public function setMetaDescription(string $metaDescription = ''): Supplier
+    public function setMetaDescription(string $metaDescription = null): Supplier
     {
         $this->metaDescription = $metaDescription;
         return $this;
@@ -159,7 +159,7 @@ class Supplier
      * @param string $metaKeywords
      * @return Supplier
      */
-    public function setMetaKeywords(string $metaKeywords = ''): Supplier
+    public function setMetaKeywords(string $metaKeywords = null): Supplier
     {
         $this->metaKeywords = $metaKeywords;
         return $this;
