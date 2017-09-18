@@ -122,6 +122,11 @@ class Article
      */
     protected $links;
 
+    /**
+     * @var Supplier
+     */
+    protected $supplier;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -636,5 +641,23 @@ class Article
         if ($this->links->contains($link)) {
             $this->links->removeElement($link);
         }
+    }
+
+    /**
+     * @param Supplier $supplier
+     * @return Article
+     */
+    public function setSupplier(Supplier $supplier): Article
+    {
+        $this->supplier = $supplier;
+        return $this;
+    }
+
+    /**
+     * @return Supplier
+     */
+    public function getSupplier()
+    {
+        return $this->supplier;
     }
 }
