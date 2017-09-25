@@ -5,7 +5,10 @@ namespace DPN\SwConnect\Service;
 use DPN\SwConnect\Client\ShopwareClient;
 use DPN\SwConnect\Domain\Model\Article;
 use DPN\SwConnect\Serialization\SerializerFactory;
+use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Extensionmanager\Utility\ConfigurationUtility;
 
 class ProductService implements SingletonInterface
@@ -13,16 +16,30 @@ class ProductService implements SingletonInterface
     const CATEGORY_MODE_OR = 'OR';
 
     /**
+     * @var \TYPO3\CMS\Core\Log\Logger
+     */
+    protected $logger;
+
+    /**
      * @var ConfigurationUtility
      */
     private $configurationUtility;
 
     /**
-     * @param ConfigurationUtility $configurationUtility
+     * @var UnitService
      */
-    public function __construct(ConfigurationUtility $configurationUtility)
+    private $unitService;
+
+    /**
+     * @param ConfigurationUtility $configurationUtility
+     * @param UnitService $unitService
+     */
+    public function __construct(ConfigurationUtility $configurationUtility, UnitService $unitService)
     {
         $this->configurationUtility = $configurationUtility;
+
+        $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
+        $this->unitService = $unitService;
     }
 
     /**
@@ -42,8 +59,21 @@ class ProductService implements SingletonInterface
                 throw new \RuntimeException('No valid product from API');
             }
 
-            return $serializer->denormalize($result['data'], Article::class);
+            /** @var Article $article */
+            $article = $serializer->denormalize($result['data'], Article::class);
+            $unit = $this->unitService->findOne($article->getMainDetail()->getUnitId());
+            $article->getMainDetail()->setUnit($unit);
+
+            return $article;
         } catch (\Exception $exception) {
+
+            $this->logger->critical($exception->getMessage(), [
+                'code' => $exception->getCode(),
+                'file' => $exception->getFile(),
+                'line' => $exception->getLine(),
+                'data' => $result['data'],
+            ]);
+
             return null;
         }
     }
@@ -62,6 +92,15 @@ class ProductService implements SingletonInterface
 
             return $serializer->denormalize($result['data'], Article::class . '[]');
         } catch (\Exception $exception) {
+
+            $this->logger->critical($exception->getMessage(), [
+                'result' => $result,
+                'code' => $exception->getCode(),
+                'file' => $exception->getFile(),
+                'line' => $exception->getLine(),
+                'data' => $result['data'],
+            ]);
+
             return [];
         }
     }
@@ -104,6 +143,14 @@ class ProductService implements SingletonInterface
 
             return $serializer->denormalize($result['data'], Article::class . '[]');
         } catch (\Exception $exception) {
+
+            $this->logger->critical($exception->getMessage(), [
+                'code' => $exception->getCode(),
+                'file' => $exception->getFile(),
+                'line' => $exception->getLine(),
+                'data' => $result['data'],
+            ]);
+
             return [];
         }
     }
@@ -138,6 +185,14 @@ class ProductService implements SingletonInterface
 
                     $articles[] = $serializer->denormalize($result['data'], Article::class);
                 } catch (\Exception $exception) {
+
+                    $this->logger->critical($exception->getMessage(), [
+                        'code' => $exception->getCode(),
+                        'file' => $exception->getFile(),
+                        'line' => $exception->getLine(),
+                        'data' => $result['data'],
+                    ]);
+
                     continue;
                 }
             }
