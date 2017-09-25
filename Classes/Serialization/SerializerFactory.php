@@ -22,13 +22,20 @@ class SerializerFactory
      */
     public static function createDefaultSerializer()
     {
-        $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
-        $encoders = static::createExtractors();
-        $propertyInfoExtractor = static::createPropertyExtractor($classMetadataFactory);
+        static $serializer = null;
 
-        $normalizers = [new DateTimeNormalizer(), new ArrayDenormalizer(), new ObjectNormalizer($classMetadataFactory, null, null, $propertyInfoExtractor)];
+        if ($serializer === null) {
+            $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
+            $encoders = static::createExtractors();
+            $propertyInfoExtractor = static::createPropertyExtractor($classMetadataFactory);
 
-        return new Serializer($normalizers, $encoders);
+            $normalizers = [new DateTimeNormalizer(), new ArrayDenormalizer(), new ObjectNormalizer($classMetadataFactory, null, null, $propertyInfoExtractor)];
+
+            $serializer = new Serializer($normalizers, $encoders);
+
+            return $serializer;
+        }
+        return $serializer;
     }
 
     public static function createPropertyExtractor(ClassMetadataFactory $classMetadataFactory)
