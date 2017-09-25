@@ -109,6 +109,13 @@ $iconRegistry->registerIcon(
         'source' => 'EXT:sw_connect/Resources/Public/Icons/icon-shopware.svg',
     ]
 );
+$iconRegistry->registerIcon(
+    'swconnect-model-category',
+    \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+    [
+        'source' => 'EXT:sw_connect/Resources/Public/Icons/icon-shopware.svg',
+    ]
+);
 
 unset($iconRegistry);
 
