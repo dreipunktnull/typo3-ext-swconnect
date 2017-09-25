@@ -2,6 +2,9 @@
 
 namespace DPN\SwConnect\Client;
 
+use TYPO3\CMS\Core\Log\LogManager;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 class ShopwareClient
 {
     const METHOD_GET = 'GET';
@@ -30,6 +33,11 @@ class ShopwareClient
     protected $cURL;
 
     /**
+     * @var \TYPO3\CMS\Core\Log\Logger
+     */
+    protected $logger;
+
+    /**
      * ShopwareClient constructor.
      * @param string $apiUrl
      * @param string $username
@@ -50,6 +58,8 @@ class ShopwareClient
             CURLOPT_HTTPHEADER,
             ['Content-Type: application/json; charset=utf-8']
         );
+
+        $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
     }
 
     /**
@@ -63,7 +73,7 @@ class ShopwareClient
     public function call($url, $method = self::METHOD_GET, $data = [], $params = [])
     {
         if (!in_array($method, $this->validMethods)) {
-            throw new \Exception('Invalid HTTP-Methode: ' . $method);
+            throw new \Exception('Invalid HTTP-Method: ' . $method);
         }
         $queryString = '';
         if (!empty($params)) {
@@ -78,6 +88,12 @@ class ShopwareClient
         $result = curl_exec($this->cURL);
         $httpCode = curl_getinfo($this->cURL, CURLINFO_HTTP_CODE);
 
+        $this->logger->debug($result, [
+            'url' => $url,
+            'method' => $method,
+            'statusCode' => $httpCode,
+        ]);
+
         return $this->prepareResponse($result, $httpCode);
     }
 
@@ -88,6 +104,10 @@ class ShopwareClient
      */
     public function get($url, $params = [])
     {
+        $this->logger->info('[EXT:sw:_connect] API GET call', [
+            'url' => $url,
+        ]);
+
         return $this->call($url, self::METHOD_GET, [], $params);
     }
 
@@ -133,15 +153,21 @@ class ShopwareClient
                 JSON_ERROR_SYNTAX => 'Syntaxerror',
             ];
 
-            return [];
+            return [
+                'result' => $result,
+            ];
         }
 
         if (!isset($decodedResult['success'])) {
-            return [];
+            return [
+                'result' => $result,
+            ];
         }
 
         if (!$decodedResult['success']) {
-            return [];
+            return [
+                'result' => $result,
+            ];
         }
 
         return $decodedResult;
