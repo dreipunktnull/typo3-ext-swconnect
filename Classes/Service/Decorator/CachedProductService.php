@@ -4,6 +4,7 @@ namespace DPN\SwConnect\Service\Decorator;
 
 use DPN\SwConnect\Domain\Model\Article;
 use DPN\SwConnect\Service\ProductService;
+use DPN\SwConnect\Service\UnitService;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Extensionmanager\Utility\ConfigurationUtility;
@@ -27,11 +28,12 @@ class CachedProductService extends ProductService
 
     /**
      * @param ConfigurationUtility $configurationUtility
+     * @param UnitService $unitService
      * @param CacheManager $cacheManager
      */
-    public function __construct(ConfigurationUtility $configurationUtility, CacheManager $cacheManager)
+    public function __construct(ConfigurationUtility $configurationUtility, UnitService $unitService, CacheManager $cacheManager)
     {
-        parent::__construct($configurationUtility);
+        parent::__construct($configurationUtility, $unitService);
 
         $this->cacheManager = $cacheManager;
     }
