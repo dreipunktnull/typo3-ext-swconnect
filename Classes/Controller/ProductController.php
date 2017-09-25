@@ -4,6 +4,7 @@ namespace DPN\SwConnect\Controller;
 
 use DPN\SwConnect\Service\Decorator\CachedProductService;
 use DPN\SwConnect\Service\ProductService;
+use DPN\SwConnect\Service\ShopService;
 
 class ProductController extends AbstractController
 {
@@ -17,13 +18,20 @@ class ProductController extends AbstractController
     protected $productService;
 
     /**
-     * @param CachedProductService $productService
+     * @var ShopService
      */
-    public function __construct(CachedProductService $productService)
+    protected $shopService;
+
+    /**
+     * @param CachedProductService $productService
+     * @param ShopService $shopService
+     */
+    public function __construct(CachedProductService $productService, ShopService $shopService)
     {
         parent::__construct();
 
         $this->productService = $productService;
+        $this->shopService = $shopService;
     }
 
     /**
@@ -46,5 +54,6 @@ class ProductController extends AbstractController
         }
 
         $this->view->assign('row', $this->configurationManager->getContentObject()->data);
+        $this->view->assign('shop', $this->shopService->find($this->settings['merged']['shop']));
     }
 }
