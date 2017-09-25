@@ -3,6 +3,7 @@
 namespace DPN\SwConnect\Recordlist;
 
 use DPN\SwConnect\Service\Decorator\CachedProductService;
+use Shopware\Models\Article\Article;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Fluid\View\StandaloneView;
@@ -39,6 +40,20 @@ class ProductListRenderer
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         $productService = $objectManager->get(CachedProductService::class);
 
-        return $productService->findAll();
+        $articles = $productService->findAll();
+
+        uasort($articles, function ($a, $b) {
+            /** @var $a Article */
+            /** @var $b Article */
+            return strcmp($a->getName(), $b->getName());
+        });
+
+        $fullArticles = [];
+
+        foreach ($articles as $article) {
+            $fullArticles[] = $productService->findOne($article->getId());
+        }
+
+        return $fullArticles;
     }
 }
