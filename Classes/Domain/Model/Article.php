@@ -78,11 +78,6 @@ class Article
     protected $lastStock;
 
     /**
-     * @var Attribute
-     */
-    protected $attribute;
-
-    /**
      * @var true
      */
     protected $active;
@@ -431,24 +426,6 @@ class Article
     public function setLastStock($lastStock)
     {
         $this->lastStock = $lastStock;
-        return $this;
-    }
-
-    /**
-     * @return Attribute
-     */
-    public function getAttribute()
-    {
-        return $this->attribute;
-    }
-
-    /**
-     * @param Attribute $attribute
-     * @return Article
-     */
-    public function setAttribute(Attribute $attribute = null)
-    {
-        $this->attribute = $attribute;
         return $this;
     }
 

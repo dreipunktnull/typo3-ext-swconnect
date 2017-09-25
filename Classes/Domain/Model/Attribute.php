@@ -120,6 +120,11 @@ class Attribute
     protected $attr20;
 
     /**
+     * @var string
+     */
+    protected $typo3ShortDescription;
+
+    /**
      * @return int
      */
     public function getId()
@@ -530,6 +535,24 @@ class Attribute
     public function setAttr20(string $attr20 = null): Attribute
     {
         $this->attr20 = $attr20;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTypo3ShortDescription()
+    {
+        return $this->typo3ShortDescription;
+    }
+
+    /**
+     * @param string $typo3ShortDescription
+     * @return Attribute
+     */
+    public function setTypo3ShortDescription($typo3ShortDescription = ''): Attribute
+    {
+        $this->typo3ShortDescription = $typo3ShortDescription;
         return $this;
     }
 }

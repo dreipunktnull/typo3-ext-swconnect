@@ -74,7 +74,7 @@ class CustomerGroup
      * @param string $key
      * @return CustomerGroup
      */
-    public function setKey(string $key): CustomerGroup
+    public function setKey($key = null): CustomerGroup
     {
         $this->key = $key;
         return $this;
@@ -146,7 +146,7 @@ class CustomerGroup
      * @param float $discount
      * @return CustomerGroup
      */
-    public function setDiscount(float $discount = 0): CustomerGroup
+    public function setDiscount($discount = 0): CustomerGroup
     {
         $this->discount = $discount;
         return $this;

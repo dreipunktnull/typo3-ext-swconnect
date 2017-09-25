@@ -50,7 +50,7 @@ class Price
     protected $basePrice;
 
     /**
-     * @var int
+     * @var double
      */
     protected $percent;
 
@@ -58,6 +58,11 @@ class Price
      * @var CustomerGroup
      */
     protected $customerGroup;
+
+    /**
+     * @var string
+     */
+    protected $grossFormatted;
 
     /**
      * @return int
@@ -222,7 +227,7 @@ class Price
     }
 
     /**
-     * @return int
+     * @return double
      */
     public function getPercent()
     {
@@ -230,10 +235,10 @@ class Price
     }
 
     /**
-     * @param int $percent
+     * @param double $percent
      * @return Price
      */
-    public function setPercent(int $percent = 0): Price
+    public function setPercent($percent = 0.0): Price
     {
         $this->percent = $percent;
         return $this;
@@ -254,6 +259,24 @@ class Price
     public function setCustomerGroup(CustomerGroup $customerGroup): Price
     {
         $this->customerGroup = $customerGroup;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGrossFormatted()
+    {
+        return $this->grossFormatted;
+    }
+
+    /**
+     * @param string $grossFormatted
+     * @return Price
+     */
+    public function setGrossFormatted($grossFormatted = '')
+    {
+        $this->grossFormatted = $grossFormatted;
         return $this;
     }
 }

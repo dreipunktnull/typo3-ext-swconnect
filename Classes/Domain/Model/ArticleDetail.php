@@ -95,9 +95,24 @@ class ArticleDetail
     protected $seoUrl;
 
     /**
-     * @var Article[]
+     * @var Price[]
      */
     protected $prices;
+
+    /**
+     * @var Attribute
+     */
+    protected $attribute;
+
+    /**
+     * @var Unit
+     */
+    protected $unit;
+
+    public function __construct()
+    {
+        $this->prices = [];
+    }
 
     /**
      * @return int
@@ -422,7 +437,7 @@ class ArticleDetail
     }
 
     /**
-     * @return Article[]
+     * @return Price[]
      */
     public function getPrices()
     {
@@ -430,10 +445,52 @@ class ArticleDetail
     }
 
     /**
-     * @param Article[] $prices
+     * @param Price[] $prices
      */
-    public function setPrices(array $prices = [])
+    public function setPrices($prices = [])
     {
         $this->prices = $prices;
+    }
+
+    public function addPrice(Price $price)
+    {
+        $this->prices[] = $price;
+    }
+
+    /**
+     * @return Attribute
+     */
+    public function getAttribute()
+    {
+        return $this->attribute;
+    }
+
+    /**
+     * @param Attribute $attribute
+     * @return ArticleDetail
+     */
+    public function setAttribute(Attribute $attribute = null)
+    {
+        $this->attribute = $attribute;
+        return $this;
+    }
+
+    /**
+     * @return Unit
+     */
+    public function getUnit()
+    {
+        return $this->unit;
+    }
+
+    /**
+     * @param Unit $unit
+     * @return ArticleDetail
+     */
+    public function setUnit(Unit $unit)
+    {
+        $this->unit = $unit;
+
+        return $this;
     }
 }
