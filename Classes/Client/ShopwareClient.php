@@ -104,10 +104,6 @@ class ShopwareClient
      */
     public function get($url, $params = [])
     {
-        $this->logger->info('[EXT:sw:_connect] API GET call', [
-            'url' => $url,
-        ]);
-
         return $this->call($url, self::METHOD_GET, [], $params);
     }
 
@@ -152,6 +148,8 @@ class ShopwareClient
                 JSON_ERROR_CTRL_CHAR => 'Control character issue, maybe wrong encoded',
                 JSON_ERROR_SYNTAX => 'Syntaxerror',
             ];
+
+            $this->logger->critical('Error decoding json response', ['error' => $jsonErrors[json_last_error()]]);
 
             return [
                 'result' => $result,
