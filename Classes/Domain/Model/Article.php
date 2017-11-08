@@ -122,12 +122,18 @@ class Article
      */
     protected $supplier;
 
+    /**
+     * @var array
+     */
+    protected $record;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->customerGroups = new ArrayCollection();
         $this->links = new ArrayCollection();
         $this->propertyValues = new ArrayCollection();
+        $this->record = [];
     }
 
     /**
@@ -636,5 +642,21 @@ class Article
     public function getSupplier()
     {
         return $this->supplier;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRecord(): array
+    {
+        return $this->record;
+    }
+
+    /**
+     * @param array $record
+     */
+    public function setRecord(array $record = [])
+    {
+        $this->record = $record;
     }
 }

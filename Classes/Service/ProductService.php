@@ -61,8 +61,12 @@ class ProductService implements SingletonInterface
 
             /** @var Article $article */
             $article = $serializer->denormalize($result['data'], Article::class);
-            $unit = $this->unitService->findOne($article->getMainDetail()->getUnitId());
-            $article->getMainDetail()->setUnit($unit);
+            $unitId = $article->getMainDetail()->getUnitId();
+            if ($unitId !== null) {
+                $unit = $this->unitService->findOne($unitId);
+                $article->getMainDetail()->setUnit($unit);
+            }
+            $article->setRecord($result['data']);
 
             return $article;
         } catch (\Exception $exception) {
@@ -85,12 +89,18 @@ class ProductService implements SingletonInterface
     {
         $api = $this->getClient();
 
-        $result = $api->get('articles', ['limit' => 100]);
+        $result = $api->get('articles', ['limit' => 1000]);
 
         try {
             $serializer = SerializerFactory::createDefaultSerializer();
 
-            return $serializer->denormalize($result['data'], Article::class . '[]');
+            /** @var Article $hydratedObject */
+            $hydratedObjects = $serializer->denormalize($result['data'], Article::class . '[]');
+
+            foreach ($hydratedObjects as $idx =>  $hydratedObject) {
+                $hydratedObject->setRecord($result['data'][$idx]);
+            }
+            return $hydratedObjects;
         } catch (\Exception $exception) {
 
             $this->logger->critical($exception->getMessage(), [
@@ -183,7 +193,17 @@ class ProductService implements SingletonInterface
                 try {
                     $serializer = SerializerFactory::createDefaultSerializer();
 
-                    $articles[] = $serializer->denormalize($result['data'], Article::class);
+                    /** @var Article $denormalizedArticle */
+                    $denormalizedArticle = $serializer->denormalize($result['data'], Article::class);
+                    $denormalizedArticle->setRecord($result['data']);
+
+                    $unitId = $denormalizedArticle->getMainDetail()->getUnitId();
+                    if ($unitId !== null) {
+                        $unit = $this->unitService->findOne($unitId);
+                        $denormalizedArticle->getMainDetail()->setUnit($unit);
+                    }
+
+                    $articles[] = $denormalizedArticle;
                 } catch (\Exception $exception) {
 
                     $this->logger->critical($exception->getMessage(), [
