@@ -172,48 +172,16 @@ class ProductService implements SingletonInterface
      */
     public function findByIds(array $settings, array $ids)
     {
-        $api = $this->getClient();
-
-        $filters = [];
-
         $ids = array_filter($ids);
+
+        $limit = (int)$settings['limit'];
 
         $articles = [];
         if (count($ids) > 0) {
             foreach ($ids as $id) {
-                $result = $api->get(sprintf('articles/%s', $id), [
-                    'limit' => (int)$settings['limit'],
-                    'filter' => $filters,
-                ]);
-
-                if (false === is_array($result['data'])) {
-                    continue;
-                }
-
-                try {
-                    $serializer = SerializerFactory::createDefaultSerializer();
-
-                    /** @var Article $denormalizedArticle */
-                    $denormalizedArticle = $serializer->denormalize($result['data'], Article::class);
-                    $denormalizedArticle->setRecord($result['data']);
-
-                    $unitId = $denormalizedArticle->getMainDetail()->getUnitId();
-                    if ($unitId !== null) {
-                        $unit = $this->unitService->findOne($unitId);
-                        $denormalizedArticle->getMainDetail()->setUnit($unit);
-                    }
-
-                    $articles[] = $denormalizedArticle;
-                } catch (\Exception $exception) {
-
-                    $this->logger->critical($exception->getMessage(), [
-                        'code' => $exception->getCode(),
-                        'file' => $exception->getFile(),
-                        'line' => $exception->getLine(),
-                        'data' => $result['data'],
-                    ]);
-
-                    continue;
+                $cachedArticle = $this->findOne($id);
+                if ($cachedArticle !== null && $limit > count($articles)) {
+                    $articles[] = $cachedArticle;
                 }
             }
         }
