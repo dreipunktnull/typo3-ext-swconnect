@@ -180,7 +180,7 @@ class ProductService implements SingletonInterface
         if (count($ids) > 0) {
             foreach ($ids as $id) {
                 $cachedArticle = $this->findOne($id);
-                if ($cachedArticle !== null && $limit > count($articles)) {
+                if ($cachedArticle !== null) {
                     $articles[] = $cachedArticle;
                 }
             }
