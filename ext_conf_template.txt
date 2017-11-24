@@ -6,3 +6,5 @@ api_user =
 api_secret =
 # cat=basic/api/b; type=int+; label=TTL for the cache in seconds (0 means unlimited)
 api_cache_ttl = 3600
+# cat=basic/api/c; type=string; label=FAL Storage (ex 1:/user_upload)
+file_store = 1:/user_upload

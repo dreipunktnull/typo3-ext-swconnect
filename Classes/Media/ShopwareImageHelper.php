@@ -12,6 +12,7 @@ use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extensionmanager\Utility\ConfigurationUtility;
 
 class ShopwareImageHelper extends AbstractOnlineMediaHelper
 {
@@ -21,7 +22,10 @@ class ShopwareImageHelper extends AbstractOnlineMediaHelper
      */
     public static function transformImageToFile(Image $image)
     {
-        $targetFolderIdentifier = '1:/user_upload';
+        $configurationUtility = GeneralUtility::makeInstance(ConfigurationUtility::class);
+        $currentConfiguration = $configurationUtility->getCurrentConfiguration('sw_connect');
+        $targetFolderIdentifier = $currentConfiguration['file_store']['value'];
+
         $targetFolder = null;
 
         if ($targetFolderIdentifier) {
