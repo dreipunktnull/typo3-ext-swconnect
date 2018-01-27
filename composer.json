@@ -2,7 +2,7 @@
 	"name": "dreipunktnull/sw-connect",
 	"description": "Shopware 5 Connector for TYPO3 CMS",
 	"type": "typo3-cms-extension",
-	"license": "GPLv3",
+	"license": "GPL-3.0-only",
 	"authors": [
 		{
 			"name": "Cedric Ziel",
