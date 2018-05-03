@@ -50,7 +50,7 @@ class Price
     protected $basePrice;
 
     /**
-     * @var double
+     * @var float
      */
     protected $percent;
 
@@ -76,7 +76,7 @@ class Price
      * @param int $id
      * @return Price
      */
-    public function setId(int $id): Price
+    public function setId(int $id): self
     {
         $this->id = $id;
         return $this;
@@ -94,7 +94,7 @@ class Price
      * @param int $articleId
      * @return Price
      */
-    public function setArticleId(int $articleId): Price
+    public function setArticleId(int $articleId): self
     {
         $this->articleId = $articleId;
         return $this;
@@ -112,7 +112,7 @@ class Price
      * @param int $articleDetailsId
      * @return Price
      */
-    public function setArticleDetailsId(int $articleDetailsId): Price
+    public function setArticleDetailsId(int $articleDetailsId): self
     {
         $this->articleDetailsId = $articleDetailsId;
         return $this;
@@ -130,7 +130,7 @@ class Price
      * @param string $customerGroupKey
      * @return Price
      */
-    public function setCustomerGroupKey(string $customerGroupKey): Price
+    public function setCustomerGroupKey(string $customerGroupKey): self
     {
         $this->customerGroupKey = $customerGroupKey;
         return $this;
@@ -184,7 +184,7 @@ class Price
      * @param float $price
      * @return Price
      */
-    public function setPrice(float $price): Price
+    public function setPrice(float $price): self
     {
         $this->price = $price;
         return $this;
@@ -202,7 +202,7 @@ class Price
      * @param int $pseudoPrice
      * @return Price
      */
-    public function setPseudoPrice(int $pseudoPrice): Price
+    public function setPseudoPrice(int $pseudoPrice): self
     {
         $this->pseudoPrice = $pseudoPrice;
         return $this;
@@ -220,14 +220,14 @@ class Price
      * @param int $basePrice
      * @return Price
      */
-    public function setBasePrice(int $basePrice): Price
+    public function setBasePrice(int $basePrice): self
     {
         $this->basePrice = $basePrice;
         return $this;
     }
 
     /**
-     * @return double
+     * @return float
      */
     public function getPercent()
     {
@@ -235,10 +235,10 @@ class Price
     }
 
     /**
-     * @param double $percent
+     * @param float $percent
      * @return Price
      */
-    public function setPercent($percent = 0.0): Price
+    public function setPercent($percent = 0.0): self
     {
         $this->percent = $percent;
         return $this;
@@ -256,7 +256,7 @@ class Price
      * @param CustomerGroup $customerGroup
      * @return Price
      */
-    public function setCustomerGroup(CustomerGroup $customerGroup): Price
+    public function setCustomerGroup(CustomerGroup $customerGroup): self
     {
         $this->customerGroup = $customerGroup;
         return $this;

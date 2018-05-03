@@ -36,7 +36,6 @@ class CachedImageService extends ImageService
         $this->cacheManager = $cacheManager;
     }
 
-
     /**
      * @param int $id
      * @return Image

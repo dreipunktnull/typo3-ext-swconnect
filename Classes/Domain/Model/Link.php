@@ -41,7 +41,7 @@ class Link
      * @param int $id
      * @return Link
      */
-    public function setId(int $id): Link
+    public function setId(int $id): self
     {
         $this->id = $id;
         return $this;
@@ -59,7 +59,7 @@ class Link
      * @param int $articleId
      * @return Link
      */
-    public function setArticleId(int $articleId): Link
+    public function setArticleId(int $articleId): self
     {
         $this->articleId = $articleId;
         return $this;
@@ -77,7 +77,7 @@ class Link
      * @param string $name
      * @return Link
      */
-    public function setName(string $name): Link
+    public function setName(string $name): self
     {
         $this->name = $name;
         return $this;
@@ -95,7 +95,7 @@ class Link
      * @param string $link
      * @return Link
      */
-    public function setLink(string $link): Link
+    public function setLink(string $link): self
     {
         $this->link = $link;
         return $this;
@@ -113,7 +113,7 @@ class Link
      * @param string $target
      * @return Link
      */
-    public function setTarget(string $target): Link
+    public function setTarget(string $target): self
     {
         $this->target = $target;
         return $this;

@@ -2,7 +2,6 @@
 
 namespace DPN\SwConnect\Service;
 
-use DPN\SwConnect\Client\ShopwareClient;
 use DPN\SwConnect\Domain\Model\Category;
 use DPN\SwConnect\Serialization\SerializerFactory;
 use TYPO3\CMS\Core\Log\LogManager;
@@ -71,7 +70,6 @@ class CategoryService implements SingletonInterface
 
             return $serializer->denormalize($result['data'], Category::class . '[]');
         } catch (\Exception $exception) {
-
             $this->logger->critical($exception->getMessage(), [
                 'code' => $exception->getCode(),
                 'file' => $exception->getFile(),
@@ -108,7 +106,6 @@ class CategoryService implements SingletonInterface
 
             return $serializer->denormalize($result['data'], Category::class);
         } catch (\Exception $exception) {
-
             $this->logger->critical($exception->getMessage(), [
                 'code' => $exception->getCode(),
                 'file' => $exception->getFile(),
@@ -118,15 +115,5 @@ class CategoryService implements SingletonInterface
 
             return null;
         }
-    }
-
-    /**
-     * @return ShopwareClient
-     */
-    private function getClient(): ShopwareClient
-    {
-        $extConf = $this->configurationUtility->getCurrentConfiguration('sw_connect');
-        $api = new ShopwareClient($extConf['api_url']['value'], $extConf['api_user']['value'], $extConf['api_secret']['value']);
-        return $api;
     }
 }

@@ -5,14 +5,14 @@ namespace DPN\SwConnect\Resource\Driver;
 use TYPO3\CMS\Core\Resource\Driver\AbstractDriver;
 use TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException;
 use TYPO3\CMS\Core\Resource\ResourceStorageInterface;
-use TYPO3\CMS\Core\Utility\PathUtility;
 
 class SwConnectShopwareDriver extends AbstractDriver
 {
     /**
      * @param array $configuration
      */
-    public function __construct(array $configuration = []) {
+    public function __construct(array $configuration = [])
+    {
         parent::__construct($configuration);
 
         $this->capabilities = ResourceStorageInterface::CAPABILITY_BROWSABLE
@@ -542,7 +542,6 @@ class SwConnectShopwareDriver extends AbstractDriver
     public function getFolderInFolder($folderName, $folderIdentifier)
     {
         if ($folderName) {
-
         }
     }
 

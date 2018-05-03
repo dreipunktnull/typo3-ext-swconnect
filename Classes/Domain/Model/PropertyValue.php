@@ -41,7 +41,7 @@ class PropertyValue
      * @param int $id
      * @return PropertyValue
      */
-    public function setId(int $id): PropertyValue
+    public function setId(int $id): self
     {
         $this->id = $id;
         return $this;
@@ -59,7 +59,7 @@ class PropertyValue
      * @param string $value
      * @return PropertyValue
      */
-    public function setValue(string $value): PropertyValue
+    public function setValue(string $value): self
     {
         $this->value = $value;
         return $this;
@@ -77,7 +77,7 @@ class PropertyValue
      * @param int $position
      * @return PropertyValue
      */
-    public function setPosition(int $position): PropertyValue
+    public function setPosition(int $position): self
     {
         $this->position = $position;
         return $this;
@@ -95,7 +95,7 @@ class PropertyValue
      * @param int $optionId
      * @return PropertyValue
      */
-    public function setOptionId(int $optionId): PropertyValue
+    public function setOptionId(int $optionId): self
     {
         $this->optionId = $optionId;
         return $this;
@@ -113,7 +113,7 @@ class PropertyValue
      * @param string $valueNumeric
      * @return PropertyValue
      */
-    public function setValueNumeric(string $valueNumeric): PropertyValue
+    public function setValueNumeric(string $valueNumeric): self
     {
         $this->valueNumeric = $valueNumeric;
         return $this;

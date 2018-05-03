@@ -15,7 +15,6 @@ abstract class AbstractController extends ActionController
      * @see http://nerdcenter.de/extbase-typoscript-flexform-settings/
      *
      * @param ConfigurationManagerInterface $configurationManager
-     * @return void
      **/
     public function injectConfigurationManager(ConfigurationManagerInterface $configurationManager)
     {

@@ -29,7 +29,7 @@ class SortByPropertyViewHelper extends AbstractViewHelper
             return;
         }
 
-        uasort($subject, function ($a, $b) use($property) {
+        uasort($subject, function ($a, $b) use ($property) {
             return strcmp($a->get{ucfirst($property)}, $b->get{ucfirst($property)});
         });
 

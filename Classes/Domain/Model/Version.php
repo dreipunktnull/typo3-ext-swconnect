@@ -29,7 +29,7 @@ class Version
      * @param string $version
      * @return Version
      */
-    public function setVersion($version = ''): Version
+    public function setVersion($version = ''): self
     {
         $this->version = $version;
         return $this;
@@ -47,7 +47,7 @@ class Version
      * @param string $revision
      * @return Version
      */
-    public function setRevision($revision = ''): Version
+    public function setRevision($revision = ''): self
     {
         $this->revision = $revision;
         return $this;

@@ -496,7 +496,7 @@ class Article
      * @param Tax $tax
      * @return Article
      */
-    public function setTax(Tax $tax) : Article
+    public function setTax(Tax $tax) : self
     {
         $this->tax = $tax;
 
@@ -507,7 +507,7 @@ class Article
      * @param PropertyValue[] $propertyValues
      * @return Article
      */
-    public function setPropertyValues($propertyValues): Article
+    public function setPropertyValues($propertyValues): self
     {
         if (is_array($propertyValues)) {
             $this->propertyValues = new ArrayCollection($propertyValues);
@@ -548,7 +548,7 @@ class Article
      * @param CustomerGroup[] $customerGroups
      * @return Article
      */
-    public function setCustomerGroups($customerGroups): Article
+    public function setCustomerGroups($customerGroups): self
     {
         if (is_array($customerGroups)) {
             $this->customerGroups = new ArrayCollection($customerGroups);
@@ -597,7 +597,7 @@ class Article
      * @param Link[] $links
      * @return Article
      */
-    public function setLinks($links): Article
+    public function setLinks($links): self
     {
         if (is_array($links)) {
             $this->links = new ArrayCollection($links);
@@ -630,7 +630,7 @@ class Article
      * @param Supplier $supplier
      * @return Article
      */
-    public function setSupplier(Supplier $supplier): Article
+    public function setSupplier(Supplier $supplier): self
     {
         $this->supplier = $supplier;
         return $this;

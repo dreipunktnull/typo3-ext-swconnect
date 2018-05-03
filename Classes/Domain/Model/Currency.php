@@ -25,7 +25,7 @@ class Currency
     protected $default;
 
     /**
-     * @var double
+     * @var float
      */
     protected $factor;
 
@@ -56,7 +56,7 @@ class Currency
      * @param int $id
      * @return Currency
      */
-    public function setId(int $id): Currency
+    public function setId(int $id): self
     {
         $this->id = $id;
         return $this;
@@ -74,7 +74,7 @@ class Currency
      * @param string $currency
      * @return Currency
      */
-    public function setCurrency(string $currency): Currency
+    public function setCurrency(string $currency): self
     {
         $this->currency = $currency;
         return $this;
@@ -92,7 +92,7 @@ class Currency
      * @param string $name
      * @return Currency
      */
-    public function setName($name = ''): Currency
+    public function setName($name = ''): self
     {
         $this->name = $name;
         return $this;
@@ -110,7 +110,7 @@ class Currency
      * @param int $default
      * @return Currency
      */
-    public function setDefault($default = 0): Currency
+    public function setDefault($default = 0): self
     {
         $this->default = $default;
         return $this;
@@ -125,10 +125,10 @@ class Currency
     }
 
     /**
-     * @param double $factor
+     * @param float $factor
      * @return Currency
      */
-    public function setFactor($factor = 0.0): Currency
+    public function setFactor($factor = 0.0): self
     {
         $this->factor = $factor;
         return $this;
@@ -146,7 +146,7 @@ class Currency
      * @param string $symbol
      * @return Currency
      */
-    public function setSymbol($symbol = ''): Currency
+    public function setSymbol($symbol = ''): self
     {
         $this->symbol = $symbol;
         return $this;
@@ -164,7 +164,7 @@ class Currency
      * @param int $symbolPosition
      * @return Currency
      */
-    public function setSymbolPosition($symbolPosition = 0): Currency
+    public function setSymbolPosition($symbolPosition = 0): self
     {
         $this->symbolPosition = $symbolPosition;
         return $this;
@@ -182,7 +182,7 @@ class Currency
      * @param int $position
      * @return Currency
      */
-    public function setPosition($position = 0): Currency
+    public function setPosition($position = 0): self
     {
         $this->position = $position;
         return $this;

@@ -8,7 +8,6 @@ use DPN\SwConnect\Serialization\SerializerFactory;
 use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Extensionmanager\Utility\ConfigurationUtility;
 
 class ProductService implements SingletonInterface
@@ -42,6 +41,15 @@ class ProductService implements SingletonInterface
         $this->unitService = $unitService;
     }
 
+    public function count()
+    {
+        $api = $this->getClient();
+
+        $result = $api->get('articles');
+
+        return $result['total'];
+    }
+
     /**
      * @param int $id
      * @return Article
@@ -70,7 +78,6 @@ class ProductService implements SingletonInterface
 
             return $article;
         } catch (\Exception $exception) {
-
             $this->logger->critical($exception->getMessage(), [
                 'code' => $exception->getCode(),
                 'file' => $exception->getFile(),
@@ -83,13 +90,14 @@ class ProductService implements SingletonInterface
     }
 
     /**
+     * @param array $arguments
      * @return Article[]
      */
-    public function findAll()
+    public function findAll(array $arguments = [])
     {
         $api = $this->getClient();
 
-        $result = $api->get('articles', ['limit' => 1000]);
+        $result = $api->get('articles', $arguments);
 
         try {
             $serializer = SerializerFactory::createDefaultSerializer();
@@ -100,9 +108,9 @@ class ProductService implements SingletonInterface
             foreach ($hydratedObjects as $idx =>  $hydratedObject) {
                 $hydratedObject->setRecord($result['data'][$idx]);
             }
+
             return $hydratedObjects;
         } catch (\Exception $exception) {
-
             $this->logger->critical($exception->getMessage(), [
                 'result' => $result,
                 'code' => $exception->getCode(),
@@ -153,7 +161,6 @@ class ProductService implements SingletonInterface
 
             return $serializer->denormalize($result['data'], Article::class . '[]');
         } catch (\Exception $exception) {
-
             $this->logger->critical($exception->getMessage(), [
                 'code' => $exception->getCode(),
                 'file' => $exception->getFile(),

@@ -30,7 +30,7 @@ class Shop
     protected $title;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $position;
 
@@ -106,7 +106,7 @@ class Shop
      * @param int $id
      * @return Shop
      */
-    public function setId(int $id): Shop
+    public function setId(int $id): self
     {
         $this->id = $id;
         return $this;
@@ -124,7 +124,7 @@ class Shop
      * @param int $mainId
      * @return Shop
      */
-    public function setMainId($mainId = null): Shop
+    public function setMainId($mainId = null): self
     {
         $this->mainId = $mainId;
         return $this;
@@ -142,7 +142,7 @@ class Shop
      * @param int $categoryId
      * @return Shop
      */
-    public function setCategoryId($categoryId): Shop
+    public function setCategoryId($categoryId): self
     {
         $this->categoryId = $categoryId;
         return $this;
@@ -160,7 +160,7 @@ class Shop
      * @param string $name
      * @return Shop
      */
-    public function setName(string $name): Shop
+    public function setName(string $name): self
     {
         $this->name = $name;
         return $this;
@@ -178,7 +178,7 @@ class Shop
      * @param string $title
      * @return Shop
      */
-    public function setTitle(string $title): Shop
+    public function setTitle(string $title): self
     {
         $this->title = $title;
         return $this;
@@ -196,7 +196,7 @@ class Shop
      * @param int $position
      * @return Shop
      */
-    public function setPosition(int $position): Shop
+    public function setPosition(int $position): self
     {
         $this->position = $position;
         return $this;
@@ -214,7 +214,7 @@ class Shop
      * @param string $host
      * @return Shop
      */
-    public function setHost($host = ''): Shop
+    public function setHost($host = ''): self
     {
         $this->host = $host;
         return $this;
@@ -232,7 +232,7 @@ class Shop
      * @param string $basePath
      * @return Shop
      */
-    public function setBasePath($basePath = ''): Shop
+    public function setBasePath($basePath = ''): self
     {
         $this->basePath = $basePath;
         return $this;
@@ -250,7 +250,7 @@ class Shop
      * @param string $baseUrl
      * @return Shop
      */
-    public function setBaseUrl($baseUrl = ''): Shop
+    public function setBaseUrl($baseUrl = ''): self
     {
         $this->baseUrl = $baseUrl;
         return $this;
@@ -286,7 +286,7 @@ class Shop
      * @param bool $secure
      * @return Shop
      */
-    public function setSecure($secure = false): Shop
+    public function setSecure($secure = false): self
     {
         $this->secure = $secure;
         return $this;
@@ -304,7 +304,7 @@ class Shop
      * @param bool $alwaysSecure
      * @return Shop
      */
-    public function setAlwaysSecure(bool $alwaysSecure): Shop
+    public function setAlwaysSecure(bool $alwaysSecure): self
     {
         $this->alwaysSecure = $alwaysSecure;
         return $this;
@@ -322,7 +322,7 @@ class Shop
      * @param string $secureHost
      * @return Shop
      */
-    public function setSecureHost($secureHost = ''): Shop
+    public function setSecureHost($secureHost = ''): self
     {
         $this->secureHost = $secureHost;
         return $this;
@@ -340,7 +340,7 @@ class Shop
      * @param string $secureBasePath
      * @return Shop
      */
-    public function setSecureBasePath($secureBasePath = ''): Shop
+    public function setSecureBasePath($secureBasePath = ''): self
     {
         $this->secureBasePath = $secureBasePath;
         return $this;
@@ -358,7 +358,7 @@ class Shop
      * @param bool $default
      * @return Shop
      */
-    public function setDefault($default = false): Shop
+    public function setDefault($default = false): self
     {
         $this->default = $default;
         return $this;
@@ -376,7 +376,7 @@ class Shop
      * @param bool $active
      * @return Shop
      */
-    public function setActive($active = false): Shop
+    public function setActive($active = false): self
     {
         $this->active = $active;
         return $this;
@@ -394,7 +394,7 @@ class Shop
      * @param bool $customerScope
      * @return Shop
      */
-    public function setCustomerScope($customerScope = false): Shop
+    public function setCustomerScope($customerScope = false): self
     {
         $this->customerScope = $customerScope;
         return $this;
@@ -412,7 +412,7 @@ class Shop
      * @param Currency $currency
      * @return Shop
      */
-    public function setCurrency(Currency $currency): Shop
+    public function setCurrency(Currency $currency): self
     {
         $this->currency = $currency;
         return $this;

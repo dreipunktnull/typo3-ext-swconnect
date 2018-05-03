@@ -23,13 +23,16 @@ class VersionService implements SingletonInterface
         $this->configurationUtility = $configurationUtility;
     }
 
+    /**
+     * @return Version
+     */
     public function getVersion()
     {
         $result = $this->getClient()
             ->get('version');
 
         if (false === is_array($result['data'])) {
-            return [];
+            return null;
         }
 
         try {
@@ -37,7 +40,7 @@ class VersionService implements SingletonInterface
 
             return $serializer->denormalize($result['data'], Version::class);
         } catch (\Exception $exception) {
-            return [];
+            return null;
         }
     }
 

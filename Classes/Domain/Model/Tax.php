@@ -31,7 +31,7 @@ class Tax
      * @param int $id
      * @return Tax
      */
-    public function setId(int $id): Tax
+    public function setId(int $id): self
     {
         $this->id = $id;
         return $this;
@@ -49,7 +49,7 @@ class Tax
      * @param string $tax
      * @return Tax
      */
-    public function setTax(string $tax): Tax
+    public function setTax(string $tax): self
     {
         $this->tax = $tax;
         return $this;
@@ -67,7 +67,7 @@ class Tax
      * @param string $name
      * @return Tax
      */
-    public function setName(string $name): Tax
+    public function setName(string $name): self
     {
         $this->name = $name;
         return $this;

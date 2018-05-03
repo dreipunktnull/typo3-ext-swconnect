@@ -190,7 +190,7 @@ class Attribute
      * @param string $attr1
      * @return Attribute
      */
-    public function setAttr1(string $attr1 = null): Attribute
+    public function setAttr1(string $attr1 = null): self
     {
         $this->attr1 = $attr1;
         return $this;
@@ -208,7 +208,7 @@ class Attribute
      * @param string $attr2
      * @return Attribute
      */
-    public function setAttr2(string $attr2 = null): Attribute
+    public function setAttr2(string $attr2 = null): self
     {
         $this->attr2 = $attr2;
         return $this;
@@ -226,7 +226,7 @@ class Attribute
      * @param string $attr3
      * @return Attribute
      */
-    public function setAttr3(string $attr3 = null): Attribute
+    public function setAttr3(string $attr3 = null): self
     {
         $this->attr3 = $attr3;
         return $this;
@@ -244,7 +244,7 @@ class Attribute
      * @param string $attr4
      * @return Attribute
      */
-    public function setAttr4(string $attr4 = null): Attribute
+    public function setAttr4(string $attr4 = null): self
     {
         $this->attr4 = $attr4;
         return $this;
@@ -262,7 +262,7 @@ class Attribute
      * @param string $attr5
      * @return Attribute
      */
-    public function setAttr5(string $attr5 = null): Attribute
+    public function setAttr5(string $attr5 = null): self
     {
         $this->attr5 = $attr5;
         return $this;
@@ -280,7 +280,7 @@ class Attribute
      * @param string $attr6
      * @return Attribute
      */
-    public function setAttr6(string $attr6 = null): Attribute
+    public function setAttr6(string $attr6 = null): self
     {
         $this->attr6 = $attr6;
         return $this;
@@ -298,7 +298,7 @@ class Attribute
      * @param string $attr7
      * @return Attribute
      */
-    public function setAttr7(string $attr7 = null): Attribute
+    public function setAttr7(string $attr7 = null): self
     {
         $this->attr7 = $attr7;
         return $this;
@@ -316,7 +316,7 @@ class Attribute
      * @param string $attr8
      * @return Attribute
      */
-    public function setAttr8(string $attr8 = null): Attribute
+    public function setAttr8(string $attr8 = null): self
     {
         $this->attr8 = $attr8;
         return $this;
@@ -334,7 +334,7 @@ class Attribute
      * @param string $attr9
      * @return Attribute
      */
-    public function setAttr9(string $attr9 = null): Attribute
+    public function setAttr9(string $attr9 = null): self
     {
         $this->attr9 = $attr9;
         return $this;
@@ -352,7 +352,7 @@ class Attribute
      * @param string $attr10
      * @return Attribute
      */
-    public function setAttr10(string $attr10 = null): Attribute
+    public function setAttr10(string $attr10 = null): self
     {
         $this->attr10 = $attr10;
         return $this;
@@ -370,7 +370,7 @@ class Attribute
      * @param string $attr11
      * @return Attribute
      */
-    public function setAttr11(string $attr11 = null): Attribute
+    public function setAttr11(string $attr11 = null): self
     {
         $this->attr11 = $attr11;
         return $this;
@@ -388,7 +388,7 @@ class Attribute
      * @param string $attr12
      * @return Attribute
      */
-    public function setAttr12(string $attr12 = null): Attribute
+    public function setAttr12(string $attr12 = null): self
     {
         $this->attr12 = $attr12;
         return $this;
@@ -406,7 +406,7 @@ class Attribute
      * @param string $attr13
      * @return Attribute
      */
-    public function setAttr13(string $attr13 = null): Attribute
+    public function setAttr13(string $attr13 = null): self
     {
         $this->attr13 = $attr13;
         return $this;
@@ -424,7 +424,7 @@ class Attribute
      * @param string $attr14
      * @return Attribute
      */
-    public function setAttr14(string $attr14 = null): Attribute
+    public function setAttr14(string $attr14 = null): self
     {
         $this->attr14 = $attr14;
         return $this;
@@ -442,7 +442,7 @@ class Attribute
      * @param string $attr15
      * @return Attribute
      */
-    public function setAttr15(string $attr15 = null): Attribute
+    public function setAttr15(string $attr15 = null): self
     {
         $this->attr15 = $attr15;
         return $this;
@@ -460,7 +460,7 @@ class Attribute
      * @param string $attr16
      * @return Attribute
      */
-    public function setAttr16(string $attr16 = null): Attribute
+    public function setAttr16(string $attr16 = null): self
     {
         $this->attr16 = $attr16;
         return $this;
@@ -478,7 +478,7 @@ class Attribute
      * @param string $attr17
      * @return Attribute
      */
-    public function setAttr17(string $attr17 = null): Attribute
+    public function setAttr17(string $attr17 = null): self
     {
         $this->attr17 = $attr17;
         return $this;
@@ -496,7 +496,7 @@ class Attribute
      * @param string $attr18
      * @return Attribute
      */
-    public function setAttr18(string $attr18 = null): Attribute
+    public function setAttr18(string $attr18 = null): self
     {
         $this->attr18 = $attr18;
         return $this;
@@ -514,7 +514,7 @@ class Attribute
      * @param string $attr19
      * @return Attribute
      */
-    public function setAttr19(string $attr19 = null): Attribute
+    public function setAttr19(string $attr19 = null): self
     {
         $this->attr19 = $attr19;
         return $this;
@@ -532,7 +532,7 @@ class Attribute
      * @param string $attr20
      * @return Attribute
      */
-    public function setAttr20(string $attr20 = null): Attribute
+    public function setAttr20(string $attr20 = null): self
     {
         $this->attr20 = $attr20;
         return $this;
@@ -550,7 +550,7 @@ class Attribute
      * @param string $typo3ShortDescription
      * @return Attribute
      */
-    public function setTypo3ShortDescription($typo3ShortDescription = ''): Attribute
+    public function setTypo3ShortDescription($typo3ShortDescription = ''): self
     {
         $this->typo3ShortDescription = $typo3ShortDescription;
         return $this;

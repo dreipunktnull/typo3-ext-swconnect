@@ -51,7 +51,7 @@ class Supplier
      * @param int $id
      * @return Supplier
      */
-    public function setId(int $id): Supplier
+    public function setId(int $id): self
     {
         $this->id = $id;
         return $this;
@@ -69,7 +69,7 @@ class Supplier
      * @param string $name
      * @return Supplier
      */
-    public function setName(string $name = null): Supplier
+    public function setName(string $name = null): self
     {
         $this->name = $name;
         return $this;
@@ -87,7 +87,7 @@ class Supplier
      * @param string $image
      * @return Supplier
      */
-    public function setImage(string $image = null): Supplier
+    public function setImage(string $image = null): self
     {
         $this->image = $image;
         return $this;
@@ -105,7 +105,7 @@ class Supplier
      * @param string $link
      * @return Supplier
      */
-    public function setLink(string $link = null): Supplier
+    public function setLink(string $link = null): self
     {
         $this->link = $link;
         return $this;
@@ -123,7 +123,7 @@ class Supplier
      * @param string $description
      * @return Supplier
      */
-    public function setDescription(string $description = null): Supplier
+    public function setDescription(string $description = null): self
     {
         $this->description = $description;
         return $this;
@@ -141,7 +141,7 @@ class Supplier
      * @param string $metaDescription
      * @return Supplier
      */
-    public function setMetaDescription(string $metaDescription = null): Supplier
+    public function setMetaDescription(string $metaDescription = null): self
     {
         $this->metaDescription = $metaDescription;
         return $this;
@@ -159,7 +159,7 @@ class Supplier
      * @param string $metaKeywords
      * @return Supplier
      */
-    public function setMetaKeywords(string $metaKeywords = null): Supplier
+    public function setMetaKeywords(string $metaKeywords = null): self
     {
         $this->metaKeywords = $metaKeywords;
         return $this;

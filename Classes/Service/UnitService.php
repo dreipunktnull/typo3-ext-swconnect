@@ -35,7 +35,7 @@ class UnitService implements SingletonInterface
         try {
             $serializer = SerializerFactory::createDefaultSerializer();
 
-            return $serializer->denormalize($result['data'], Unit::class.'[]');
+            return $serializer->denormalize($result['data'], Unit::class . '[]');
         } catch (\Exception $exception) {
             return [];
         }

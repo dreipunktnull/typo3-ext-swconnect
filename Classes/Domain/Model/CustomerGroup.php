@@ -15,17 +15,17 @@ class CustomerGroup
     protected $key;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $tax;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $taxInput;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $mode;
 
@@ -56,7 +56,7 @@ class CustomerGroup
      * @param int $id
      * @return CustomerGroup
      */
-    public function setId(int $id): CustomerGroup
+    public function setId(int $id): self
     {
         $this->id = $id;
         return $this;
@@ -74,7 +74,7 @@ class CustomerGroup
      * @param string $key
      * @return CustomerGroup
      */
-    public function setKey($key = null): CustomerGroup
+    public function setKey($key = null): self
     {
         $this->key = $key;
         return $this;
@@ -92,7 +92,7 @@ class CustomerGroup
      * @param bool $tax
      * @return CustomerGroup
      */
-    public function setTax(bool $tax): CustomerGroup
+    public function setTax(bool $tax): self
     {
         $this->tax = $tax;
         return $this;
@@ -110,7 +110,7 @@ class CustomerGroup
      * @param bool $taxInput
      * @return CustomerGroup
      */
-    public function setTaxInput(bool $taxInput): CustomerGroup
+    public function setTaxInput(bool $taxInput): self
     {
         $this->taxInput = $taxInput;
         return $this;
@@ -128,7 +128,7 @@ class CustomerGroup
      * @param bool $mode
      * @return CustomerGroup
      */
-    public function setMode(bool $mode): CustomerGroup
+    public function setMode(bool $mode): self
     {
         $this->mode = $mode;
         return $this;
@@ -146,7 +146,7 @@ class CustomerGroup
      * @param float $discount
      * @return CustomerGroup
      */
-    public function setDiscount($discount = 0): CustomerGroup
+    public function setDiscount($discount = 0): self
     {
         $this->discount = $discount;
         return $this;
@@ -164,7 +164,7 @@ class CustomerGroup
      * @param int $minimumOrder
      * @return CustomerGroup
      */
-    public function setMinimumOrder(int $minimumOrder = 0): CustomerGroup
+    public function setMinimumOrder(int $minimumOrder = 0): self
     {
         $this->minimumOrder = $minimumOrder;
         return $this;
@@ -182,7 +182,7 @@ class CustomerGroup
      * @param int $minimumOrderSurcharge
      * @return CustomerGroup
      */
-    public function setMinimumOrderSurcharge(int $minimumOrderSurcharge = 0): CustomerGroup
+    public function setMinimumOrderSurcharge(int $minimumOrderSurcharge = 0): self
     {
         $this->minimumOrderSurcharge = $minimumOrderSurcharge;
         return $this;

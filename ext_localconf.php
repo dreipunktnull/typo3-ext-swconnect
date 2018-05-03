@@ -180,7 +180,6 @@ if (TYPO3_MODE === 'BE') {
     $GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1498721802] = \DPN\SwConnect\Backend\ToolbarItems\SwConnectToolbarItem::class;
 }
 
-
 /**
  * Backend previews.
  */

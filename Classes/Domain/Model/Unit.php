@@ -31,7 +31,7 @@ class Unit
      * @param int $id
      * @return Unit
      */
-    public function setId(int $id): Unit
+    public function setId(int $id): self
     {
         $this->id = $id;
         return $this;
@@ -49,7 +49,7 @@ class Unit
      * @param string $unit
      * @return Unit
      */
-    public function setUnit(string $unit): Unit
+    public function setUnit(string $unit): self
     {
         $this->unit = $unit;
         return $this;
@@ -67,7 +67,7 @@ class Unit
      * @param string $name
      * @return Unit
      */
-    public function setName(string $name = ''): Unit
+    public function setName(string $name = ''): self
     {
         $this->name = $name;
         return $this;
