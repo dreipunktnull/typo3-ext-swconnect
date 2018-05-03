@@ -95,3 +95,15 @@ Signals can be used to enhance the core extension functionality.
 | Class | Signal | Info |
 |--------------------------------------|-----------------|--------------------------------------------------------------------------------------------------------|
 | `DPN\SwConnect\Backend\ToolbarItems` | `collectStatus` | Implement `DPN\SwConnect\Slot\StatusCollectorSlotInterface` to enhance the Backend Status Item reports |
+
+## CLI Tasks
+
+### Product Header Data
+
+In the first, naive implementation, product names for backend forms were dynamically loaded through a cache.
+
+You need to import the article data through the `sw_connect:articles:import` task before any articles appear in the backend forms.
+
+```bash
+vendor/bin/typo3 sw_connect:articles:import
+```
