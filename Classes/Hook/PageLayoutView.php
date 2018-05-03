@@ -43,7 +43,7 @@ class PageLayoutView
         if ($settings !== null && array_key_exists('settings.override.products', $settings)) {
             $productIds = explode(',', $settings['settings.override.products']['vDEF']);
 
-            if (\count($productIds) > 0) {
+            if (\count(array_filter($productIds)) > 0) {
                 $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
                     ->getConnectionForTable('tx_dpnswconnect_article')
                     ->createQueryBuilder();
