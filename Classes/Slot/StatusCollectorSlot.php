@@ -3,6 +3,10 @@
 namespace DPN\SwConnect\Slot;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use DPN\SwConnect\Service\VersionService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Extensionmanager\Utility\ConfigurationUtility;
 
 /**
  * Main System Status Collector.
@@ -27,7 +31,7 @@ class StatusCollectorSlot implements StatusCollectorSlotInterface
             'iconIdentifier' => 'actions-system-extension-configure',
             'title' => 'API URL',
             'titleAddition' => null,
-            'value' => 'https://api.example.com/api',
+            'value' => $this->getShopwareApiUrl(),
             'status' => 'normal',
             'priority' => 200,
         ]);
@@ -38,6 +42,25 @@ class StatusCollectorSlot implements StatusCollectorSlotInterface
      */
     protected function getShopwareVersion()
     {
-        return '5.2.2';
+        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+        $versionService = $objectManager->get(VersionService::class);
+
+        $version = $versionService->getVersion();
+        if ($version === null) {
+            return 'error retrieving version information';
+        }
+
+        return $version->getVersion();
+    }
+
+    /**
+     * @return string
+     */
+    private function getShopwareApiUrl(): string
+    {
+        $configurationUtility = GeneralUtility::makeInstance(ConfigurationUtility::class);
+
+        $extConf = $configurationUtility->getCurrentConfiguration('sw_connect');
+        return $extConf['api_url']['value'] ?? '-';
     }
 }
