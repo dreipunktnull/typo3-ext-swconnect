@@ -35,7 +35,7 @@ class Price
     protected $to;
 
     /**
-     * @var float
+     * @var float|int
      */
     protected $price;
 
@@ -173,7 +173,7 @@ class Price
     }
 
     /**
-     * @return float
+     * @return float|int
      */
     public function getPrice()
     {
@@ -181,10 +181,10 @@ class Price
     }
 
     /**
-     * @param float $price
+     * @param float|int $price
      * @return Price
      */
-    public function setPrice(float $price): self
+    public function setPrice($price): self
     {
         $this->price = $price;
         return $this;
