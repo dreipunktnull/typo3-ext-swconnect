@@ -43,15 +43,17 @@ class PageLayoutView
         if ($settings !== null && array_key_exists('settings.override.products', $settings)) {
             $productIds = explode(',', $settings['settings.override.products']['vDEF']);
 
-            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-                ->getConnectionForTable('tx_dpnswconnect_article')
-                ->createQueryBuilder();
-            $products = $queryBuilder->select('shopware_id', 'name', 'article_number')
-                ->from('tx_dpnswconnect_article')
-                ->where($queryBuilder->expr()->in('shopware_id', $productIds))
-                ->execute()
-                ->fetchAll()
-            ;
+            if (\count($productIds) > 0) {
+                $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                    ->getConnectionForTable('tx_dpnswconnect_article')
+                    ->createQueryBuilder();
+                $products = $queryBuilder->select('shopware_id', 'name', 'article_number')
+                    ->from('tx_dpnswconnect_article')
+                    ->where($queryBuilder->expr()->in('shopware_id', $productIds))
+                    ->execute()
+                    ->fetchAll()
+                ;
+            }
         }
 
         $output .= '<div class="table-responsive">';
