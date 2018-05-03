@@ -73,19 +73,20 @@ class ArticleImportCommand extends Command
             /** @var Article $enrichedArticle */
             $enrichedArticle = $this->productService->findOne($article->getId());
 
+            $articleNumber = '';
+            if ($enrichedArticle !== null && $enrichedArticle->getMainDetail() !== null) {
+                $articleNumber = $enrichedArticle->getMainDetail()->getNumber();
+            }
+
             if (count($existingRows) > 0) {
                 $current = current($existingRows);
 
                 $db->update('tx_dpnswconnect_article', [
                     'shopware_id' => $article->getId(),
                     'name' => $article->getName(),
-                    'article_number' => $enrichedArticle->getMainDetail() !== null ? $enrichedArticle->getMainDetail()->getNumber() : '',
+                    'article_number' => $articleNumber,
                 ], ['uid' => $current['uid']]);
             } else {
-                $articleNumber = '';
-                if ($enrichedArticle !== null && $enrichedArticle->getMainDetail() !== null) {
-                    $articleNumber = $enrichedArticle->getMainDetail()->getNumber();
-                }
                 $db->insert('tx_dpnswconnect_article', [
                     'shopware_id' => $article->getId(),
                     'name' => $article->getName(),
