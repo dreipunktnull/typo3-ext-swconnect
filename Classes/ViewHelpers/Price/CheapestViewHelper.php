@@ -22,7 +22,14 @@ class CheapestViewHelper extends AbstractViewHelper
         /** @var Price[] $prices */
         $prices = $renderChildrenClosure();
 
-        usort($prices, function ($a, $b) {
+        // Hotfix: Filter prices by hardcoded B2C customer group
+        // TODO: Make this configurable
+        $filteredPrices = array_filter($prices, function($price) {
+            /** @var Price $price */
+            return 'EK' === $price->getCustomerGroupKey();
+        });
+
+        usort($filteredPrices, function ($a, $b) {
             /** @var Price $a */
             /** @var Price $b */
             return $a->getPrice() > $b->getPrice();
